@@ -24,7 +24,7 @@ bf16 · `device_map="auto"`
 | Within-pair `entity_token` | `runs/within-pair-entity/results/within_pair.json` | `present_within_pair` (archived as `present_not_filler_general`) |
 | RQ2 `final_token` | `runs/rq2/results/rq2_ablation.json` | not causally involved |
 | RQ2 `entity_token` | `runs/rq2-entity-token/…` (+ patch below) | **not causally involved** |
-| fit_directions | `runs/fit-directions/results/…` | site dissociation |
+| fit_directions | `runs/fit-directions/directions/…` | site dissociation |
 | calibrate | `runs/calibrate-exit3/…` | **exit 3** |
 | Primary (E3) | `runs/logs/primary.log` | **`uninterpretable_strength_failure`** |
 | Nonlinear probe | `runs/nonlinear-probe/results/nonlinear_probe.json` | `null_survives_nonlinearity` |
