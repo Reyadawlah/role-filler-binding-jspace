@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e '.[dev]'
+      - name: Lint
+        run: ruff check src tests scripts
+      - name: Unit tests
+        run: pytest -q
+      # The pipeline must recover the planted answer in both dummy worlds.
+      - name: Dry-run pipeline (binding + bag)
+        run: |
+          python scripts/fit_directions.py --config configs/ci.yaml --dry-run > /dev/null
+          python scripts/calibrate.py      --config configs/ci.yaml --dry-run > /dev/null
+          python scripts/run_primary.py    --config configs/ci.yaml --dry-run --dummy-mode binding > /dev/null
+          python scripts/run_primary.py    --config configs/ci.yaml --dry-run --dummy-mode bag > /dev/null
+          python scripts/run_rq1.py        --config configs/ci.yaml --dry-run --dummy-mode binding > /dev/null
+          python scripts/run_rq2.py        --config configs/ci.yaml --dry-run --dummy-mode binding > /dev/null
+      # The reviewable CSV is generated, so it can silently go stale after a
+      # template or config change. Regenerate and fail if it drifted.
+      - name: Stimuli CSV is current
+        run: |
+          python scripts/stimuli_to_csv.py
+          git diff --exit-code -- data/stimuli/primary_stimuli.csv

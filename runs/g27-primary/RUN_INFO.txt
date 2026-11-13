@@ -1,0 +1,7 @@
+label: g27-primary
+commit: 21bce6f16e06e6b2418af8e7fcb064d3a09ee9fc
+dirty: True
+config: configs/gemma3_27b_it_lre.yaml
+sources: ['data/gemma3_27b/results_lre', 'data/gemma3_27b/directions_lre', 'figures/gemma3_27b_lre', 'data/gemma3_27b/calibration_lre.json']
+note: Gemma-3-27B-IT primary, entity_token (table #15)
+files: 8

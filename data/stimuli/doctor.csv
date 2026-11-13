@@ -1,0 +1,21 @@
+﻿DOCTOR AGENT ACTIVE,DOCTOR AGENT PASSIVE,DOCTOR PATIENT ACTIVE,DOCTOR PATIENT PASSIVE,EVAL SET agent + active,EVAL SET agent + passive,EVAL SET patient + active,EVAL SET patient + passive
+The doctor paid the lawyer.,The lawyer was paid by the doctor.,The lawyer paid the doctor.,The doctor was paid by the lawyer.,The doctor advised the lawyer.,The lawyer was advised by the doctor.,The lawyer advised the doctor.,The doctor was advised by the lawyer.
+The doctor followed the judge.,The judge was followed by the doctor.,The judge followed the doctor.,The doctor was followed by the judge.,The doctor welcomed the judge.,The judge was welcomed by the doctor.,The judge welcomed the doctor.,The doctor was welcomed by the judge.
+The doctor called the teacher.,The teacher was called by the doctor.,The teacher called the doctor.,The doctor was called by the teacher.,The doctor informed the teacher.,The teacher was informed by the doctor.,The teacher informed the doctor.,The doctor was informed by the teacher.
+The doctor trained the student.,The student was trained by the doctor.,The student trained the doctor.,The doctor was trained by the student.,The doctor reminded the student.,The student was reminded by the doctor.,The student reminded the doctor.,The doctor was reminded by the student.
+The doctor warned the driver.,The driver was warned by the doctor.,The driver warned the doctor.,The doctor was warned by the driver.,The doctor accompanied the driver.,The driver was accompanied by the doctor.,The driver accompanied the doctor.,The doctor was accompanied by the driver.
+The doctor assisted the passenger.,The passenger was assisted by the doctor.,The passenger assisted the doctor.,The doctor was assisted by the passenger.,The doctor guided the passenger.,The passenger was guided by the doctor.,The passenger guided the doctor.,The doctor was guided by the passenger.
+The doctor questioned the pilot.,The pilot was questioned by the doctor.,The pilot questioned the doctor.,The doctor was questioned by the pilot.,The doctor consulted the pilot.,The pilot was consulted by the doctor.,The pilot consulted the doctor.,The doctor was consulted by the pilot.
+The doctor congratulated the chef.,The chef was congratulated by the doctor.,The chef congratulated the doctor.,The doctor was congratulated by the chef.,The doctor invited the chef.,The chef was invited by the doctor.,The chef invited the doctor.,The doctor was invited by the chef.
+The doctor visited the farmer.,The farmer was visited by the doctor.,The farmer visited the doctor.,The doctor was visited by the farmer.,,,,
+The doctor encouraged the coach.,The coach was encouraged by the doctor.,The coach encouraged the doctor.,The doctor was encouraged by the coach.,,,,
+The doctor helped the nurse.,The nurse was helped by the doctor.,The nurse helped the doctor.,The doctor was helped by the nurse.,,,,
+The doctor recognized the lawyer.,The lawyer was recognized by the doctor.,The lawyer recognized the doctor.,The doctor was recognized by the lawyer.,,,,
+The doctor introduced the judge.,The judge was introduced by the doctor.,The judge introduced the doctor.,The doctor was introduced by the judge.,,,,
+The doctor comforted the student.,The student was comforted by the doctor.,The student comforted the doctor.,The doctor was comforted by the student.,,,,
+The doctor escorted the passenger.,The passenger was escorted by the doctor.,The passenger escorted the doctor.,The doctor was escorted by the passenger.,,,,
+The doctor scolded the driver.,The driver was scolded by the doctor.,The driver scolded the doctor.,The doctor was scolded by the driver.,,,,
+The doctor thanked the pilot.,The pilot was thanked by the doctor.,The pilot thanked the doctor.,The doctor was thanked by the pilot.,,,,
+The doctor greeted the chef.,The chef was greeted by the doctor.,The chef greeted the doctor.,The doctor was greeted by the chef.,,,,
+The doctor commended the farmer.,The farmer was commended by the doctor.,The farmer commended the doctor.,The doctor was commended by the farmer.,,,,
+The doctor notified the teacher.,The teacher was notified by the doctor.,The teacher notified the doctor.,The doctor was notified by the teacher.,,,,

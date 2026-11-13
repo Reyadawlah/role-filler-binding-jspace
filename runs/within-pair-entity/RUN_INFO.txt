@@ -1,0 +1,7 @@
+label: within-pair-entity
+commit: 602973ee623c571b6f2ca2991fd537fe0dfa2317
+dirty: True
+config: configs/default.yaml (assumed)
+sources: ['data/results', 'data/directions', 'figures', 'data/calibration.json']
+note: completes the site symmetry
+files: 17

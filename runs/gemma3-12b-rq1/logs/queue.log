@@ -1,0 +1,2287 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<06:05,  2.91it/s]Loading weights:   2%|▏         | 17/1065 [00:00<00:22, 46.40it/s]Loading weights:   3%|▎         | 31/1065 [00:00<00:14, 69.10it/s]Loading weights:   5%|▍         | 49/1065 [00:00<00:10, 98.05it/s]Loading weights:   6%|▌         | 63/1065 [00:00<00:09, 108.23it/s]Loading weights:   7%|▋         | 79/1065 [00:00<00:08, 116.28it/s]Loading weights:   9%|▉         | 95/1065 [00:01<00:07, 121.68it/s]Loading weights:  10%|█         | 109/1065 [00:01<00:07, 120.15it/s]Loading weights:  12%|█▏        | 127/1065 [00:01<00:06, 134.24it/s]Loading weights:  13%|█▎        | 142/1065 [00:01<00:06, 134.34it/s]Loading weights:  15%|█▍        | 156/1065 [00:01<00:06, 133.72it/s]Loading weights:  16%|█▌        | 170/1065 [00:01<00:06, 135.40it/s]Loading weights:  17%|█▋        | 185/1065 [00:01<00:06, 131.78it/s]Loading weights:  19%|█▊        | 199/1065 [00:01<00:06, 126.46it/s]Loading weights:  20%|██        | 213/1065 [00:01<00:07, 121.15it/s]Loading weights:  22%|██▏       | 231/1065 [00:02<00:06, 136.72it/s]Loading weights:  23%|██▎       | 245/1065 [00:02<00:06, 136.61it/s]Loading weights:  24%|██▍       | 259/1065 [00:02<00:05, 136.52it/s]Loading weights:  26%|██▌       | 276/1065 [00:02<00:06, 128.21it/s]Loading weights:  27%|██▋       | 290/1065 [00:02<00:05, 129.97it/s]Loading weights:  29%|██▊       | 304/1065 [00:02<00:06, 125.75it/s]Loading weights:  30%|███       | 322/1065 [00:02<00:05, 140.14it/s]Loading weights:  32%|███▏      | 337/1065 [00:02<00:05, 141.96it/s]Loading weights:  33%|███▎      | 352/1065 [00:02<00:05, 140.61it/s]Loading weights:  34%|███▍      | 367/1065 [00:03<00:05, 126.94it/s]Loading weights:  36%|███▌      | 381/1065 [00:03<00:05, 120.61it/s]Loading weights:  37%|███▋      | 395/1065 [00:03<00:05, 119.32it/s]Loading weights:  39%|███▉      | 413/1065 [00:03<00:04, 134.78it/s]Loading weights:  40%|████      | 427/1065 [00:03<00:04, 135.46it/s]Loading weights:  42%|████▏     | 442/1065 [00:03<00:04, 139.03it/s]Loading weights:  43%|████▎     | 458/1065 [00:03<00:04, 135.96it/s]Loading weights:  44%|████▍     | 472/1065 [00:03<00:04, 127.37it/s]Loading weights:  46%|████▌     | 486/1065 [00:04<00:04, 124.12it/s]Loading weights:  47%|████▋     | 503/1065 [00:04<00:04, 131.88it/s]Loading weights:  49%|████▊     | 517/1065 [00:04<00:04, 126.31it/s]Loading weights:  50%|█████     | 533/1065 [00:04<00:03, 135.03it/s]Loading weights:  52%|█████▏    | 549/1065 [00:04<00:03, 133.42it/s]Loading weights:  53%|█████▎    | 563/1065 [00:04<00:03, 128.35it/s]Loading weights:  54%|█████▍    | 577/1065 [00:04<00:03, 124.90it/s]Loading weights:  56%|█████▌    | 594/1065 [00:04<00:03, 136.21it/s]Loading weights:  57%|█████▋    | 611/1065 [00:04<00:03, 143.59it/s]Loading weights:  59%|█████▉    | 629/1065 [00:05<00:02, 153.71it/s]Loading weights:  78%|███████▊  | 831/1065 [00:05<00:00, 682.86it/s]Loading weights:  97%|█████████▋| 1038/1065 [00:05<00:00, 1078.30it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 203.69it/s] 
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1367.26it/s]
+model=google/gemma-3-12b-pt  lens=neuronpedia/jacobian-lens
+read layer=36  jspace_k=16
+
+========================================================================
+1. NON-DEGENERATE  (+ atoms printed for human inspection)
+========================================================================
+
+  'The doctor treated the lawyer.'
+    atoms selected : 16/16
+    ||J|| / ||h||  : 0.050
+    top atoms      : ['dokter', 'posTocco', 'Then', '_______', '그는', '</u>', 'Doctors', '</h2>', '\\$', '⁵', 'しましたが', 'tedav']
+
+  'The chef prepared the meal in the kitchen.'
+    atoms selected : 16/16
+    ||J|| / ||h||  : 0.049
+    top atoms      : ['<start_of_image>', '她', 'Then', '__________', '그는', 'posTocco', '</em>', '</h3>', 'chefs', 'Noun', '=>{', 'приготов']
+
+  'The pilot landed the aircraft safely.'
+    atoms selected : 16/16
+    ||J|| / ||h||  : 0.048
+    top atoms      : ['dSampleWidth', 'firefighters', 'There', '</strong>', '」。', 'vliegtuig', 'nobody', '\ufeff', 'damage', '"]\')', '⇀', '�']
+
+  NOT auto-checked: what the workspace HOLDS is the research
+  question, so the gate does not prejudge it. Read the atoms.
+
+========================================================================
+3. DIRECTED MODULATION  (the contrast check)
+========================================================================
+  J-lens score of each concept's own token, per prompt.
+  Want the DIAGONAL to dominate: each concept scores highest when named.
+
+  prompt \ token         spider       piano     volcano
+  -----------------------------------------------------
+  spider               1536.00     -748.00     -298.00   <- OK
+  piano                   7.94     1776.00     -430.00   <- OK
+  volcano               296.00     -888.00     2048.00   <- OK
+
+========================================================================
+  non-degenerate      : PASS
+  directed modulation : PASS
+========================================================================
+GATE PASS — the lens reads this model. A near-chance experiment
+result is therefore about the MODEL, not about the plumbing.
+
+wrote data/gemma3_12b/results/replication_gate.json
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-gate                     exit=0    0h00m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/gate.log                                    [0m
+[1;97;42m                                                                            [0m
+
+seed override: experiment.seed=0 capacity_seed=0 results=data/gemma3_12b/results_S0 figures=figures/gemma3_12b_S0
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<05:34,  3.18it/s]Loading weights:   2%|▏         | 16/1065 [00:00<00:22, 46.01it/s]Loading weights:   3%|▎         | 30/1065 [00:00<00:14, 69.49it/s]Loading weights:   4%|▍         | 44/1065 [00:00<00:12, 84.31it/s]Loading weights:   6%|▌         | 62/1065 [00:00<00:09, 108.68it/s]Loading weights:   7%|▋         | 76/1065 [00:00<00:08, 116.48it/s]Loading weights:   9%|▉         | 94/1065 [00:01<00:07, 125.93it/s]Loading weights:  10%|█         | 108/1065 [00:01<00:07, 122.57it/s]Loading weights:  11%|█▏        | 122/1065 [00:01<00:07, 120.12it/s]Loading weights:  13%|█▎        | 135/1065 [00:01<00:07, 122.41it/s]Loading weights:  14%|█▍        | 148/1065 [00:01<00:07, 122.43it/s]Loading weights:  15%|█▌        | 161/1065 [00:01<00:07, 123.73it/s]Loading weights:  17%|█▋        | 178/1065 [00:01<00:06, 134.37it/s]Loading weights:  18%|█▊        | 195/1065 [00:01<00:06, 143.71it/s]Loading weights:  20%|█▉        | 210/1065 [00:01<00:05, 145.16it/s]Loading weights:  21%|██        | 225/1065 [00:02<00:06, 127.04it/s]Loading weights:  22%|██▏       | 239/1065 [00:02<00:06, 121.26it/s]Loading weights:  24%|██▍       | 257/1065 [00:02<00:05, 136.44it/s]Loading weights:  26%|██▌       | 272/1065 [00:02<00:05, 139.01it/s]Loading weights:  27%|██▋       | 287/1065 [00:02<00:05, 139.66it/s]Loading weights:  28%|██▊       | 302/1065 [00:02<00:05, 134.70it/s]Loading weights:  30%|██▉       | 316/1065 [00:02<00:05, 128.79it/s]Loading weights:  31%|███       | 330/1065 [00:02<00:05, 124.54it/s]Loading weights:  33%|███▎      | 347/1065 [00:02<00:05, 134.30it/s]Loading weights:  34%|███▍      | 361/1065 [00:03<00:05, 130.04it/s]Loading weights:  35%|███▌      | 375/1065 [00:03<00:05, 128.35it/s]Loading weights:  37%|███▋      | 390/1065 [00:03<00:05, 131.89it/s]Loading weights:  38%|███▊      | 406/1065 [00:03<00:04, 132.19it/s]Loading weights:  39%|███▉      | 420/1065 [00:03<00:05, 126.96it/s]Loading weights:  41%|████      | 434/1065 [00:03<00:05, 123.58it/s]Loading weights:  42%|████▏     | 451/1065 [00:03<00:04, 134.99it/s]Loading weights:  44%|████▎     | 465/1065 [00:03<00:04, 135.45it/s]Loading weights:  45%|████▍     | 479/1065 [00:03<00:04, 136.56it/s]Loading weights:  46%|████▋     | 494/1065 [00:04<00:04, 139.80it/s]Loading weights:  48%|████▊     | 509/1065 [00:04<00:03, 139.21it/s]Loading weights:  49%|████▉     | 523/1065 [00:04<00:04, 125.65it/s]Loading weights:  50%|█████     | 536/1065 [00:04<00:04, 120.21it/s]Loading weights:  52%|█████▏    | 551/1065 [00:04<00:04, 121.48it/s]Loading weights:  54%|█████▎    | 570/1065 [00:04<00:03, 137.77it/s]Loading weights:  55%|█████▍    | 585/1065 [00:04<00:03, 140.48it/s]Loading weights:  56%|█████▋    | 600/1065 [00:04<00:03, 134.32it/s]Loading weights:  58%|█████▊    | 615/1065 [00:04<00:03, 131.45it/s]Loading weights:  69%|██████▉   | 734/1065 [00:05<00:00, 416.81it/s]Loading weights:  89%|████████▉ | 949/1065 [00:05<00:00, 898.05it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 203.59it/s]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1494.76it/s]
+[rq1 final_token] 30/600 (5%)  20s elapsed  1.6/s  ETA 5.8m
+[rq1 final_token] 60/600 (10%)  39s elapsed  1.6/s  ETA 5.6m
+[rq1 final_token] 90/600 (15%)  58s elapsed  1.6/s  ETA 5.3m
+[rq1 final_token] 120/600 (20%)  77s elapsed  1.6/s  ETA 5.0m
+[rq1 final_token] 150/600 (25%)  1.6m elapsed  1.6/s  ETA 4.7m
+[rq1 final_token] 180/600 (30%)  1.9m elapsed  1.6/s  ETA 4.4m
+[rq1 final_token] 210/600 (35%)  2.2m elapsed  1.6/s  ETA 4.1m
+[rq1 final_token] 240/600 (40%)  2.5m elapsed  1.6/s  ETA 3.8m
+[rq1 final_token] 270/600 (45%)  2.9m elapsed  1.6/s  ETA 3.5m
+[rq1 final_token] 300/600 (50%)  3.2m elapsed  1.6/s  ETA 3.1m
+[rq1 final_token] 330/600 (55%)  3.5m elapsed  1.6/s  ETA 2.8m
+[rq1 final_token] 360/600 (60%)  3.8m elapsed  1.6/s  ETA 2.5m
+[rq1 final_token] 390/600 (65%)  4.1m elapsed  1.6/s  ETA 2.2m
+[rq1 final_token] 420/600 (70%)  4.4m elapsed  1.6/s  ETA 1.9m
+[rq1 final_token] 450/600 (75%)  4.7m elapsed  1.6/s  ETA 1.6m
+[rq1 final_token] 480/600 (80%)  5.1m elapsed  1.6/s  ETA 75s
+[rq1 final_token] 510/600 (85%)  5.4m elapsed  1.6/s  ETA 57s
+[rq1 final_token] 540/600 (90%)  5.7m elapsed  1.6/s  ETA 38s
+[rq1 final_token] 570/600 (95%)  6.0m elapsed  1.6/s  ETA 19s
+[rq1 final_token] 600/600 (100%)  6.3m elapsed  1.6/s
+[rq1 entity_token] 30/600 (5%)  19s elapsed  1.6/s  ETA 6.0m
+[rq1 entity_token] 60/600 (10%)  38s elapsed  1.6/s  ETA 5.7m
+[rq1 entity_token] 90/600 (15%)  57s elapsed  1.6/s  ETA 5.4m
+[rq1 entity_token] 120/600 (20%)  76s elapsed  1.6/s  ETA 5.1m
+[rq1 entity_token] 150/600 (25%)  1.6m elapsed  1.6/s  ETA 4.7m
+[rq1 entity_token] 180/600 (30%)  1.9m elapsed  1.6/s  ETA 4.4m
+[rq1 entity_token] 210/600 (35%)  2.2m elapsed  1.6/s  ETA 4.1m
+[rq1 entity_token] 240/600 (40%)  2.5m elapsed  1.6/s  ETA 3.8m
+[rq1 entity_token] 270/600 (45%)  2.8m elapsed  1.6/s  ETA 3.5m
+[rq1 entity_token] 300/600 (50%)  3.2m elapsed  1.6/s  ETA 3.2m
+[rq1 entity_token] 330/600 (55%)  3.5m elapsed  1.6/s  ETA 2.8m
+[rq1 entity_token] 360/600 (60%)  3.8m elapsed  1.6/s  ETA 2.5m
+[rq1 entity_token] 390/600 (65%)  4.1m elapsed  1.6/s  ETA 2.2m
+[rq1 entity_token] 420/600 (70%)  4.4m elapsed  1.6/s  ETA 1.9m
+[rq1 entity_token] 450/600 (75%)  4.7m elapsed  1.6/s  ETA 1.6m
+[rq1 entity_token] 480/600 (80%)  5.1m elapsed  1.6/s  ETA 76s
+[rq1 entity_token] 510/600 (85%)  5.4m elapsed  1.6/s  ETA 57s
+[rq1 entity_token] 540/600 (90%)  5.7m elapsed  1.6/s  ETA 38s
+[rq1 entity_token] 570/600 (95%)  6.0m elapsed  1.6/s  ETA 19s
+[rq1 entity_token] 600/600 (100%)  6.3m elapsed  1.6/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      36,
+      36
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 0,
+    "git_commit": "601170695bdc44364b0c9b94164da1f4cbc94090",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.31916666666666665,
+        "control_accuracy": 0.4891666666666667,
+        "selectivity": -0.17000000000000004,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32875,
+          0.33375,
+          0.295
+        ],
+        "control_fold_accuracies": [
+          0.47125,
+          0.4925,
+          0.50375
+        ],
+        "fold_spread": 0.03875000000000001,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.525,
+        "selectivity": -0.26625000000000004,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.27,
+          0.28375,
+          0.2225
+        ],
+        "control_fold_accuracies": [
+          0.50625,
+          0.525,
+          0.54375
+        ],
+        "fold_spread": 0.06125,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.27,
+        "control_accuracy": 0.52875,
+        "selectivity": -0.25875000000000004,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.26625,
+          0.29625,
+          0.2475
+        ],
+        "control_fold_accuracies": [
+          0.50875,
+          0.52,
+          0.5575
+        ],
+        "fold_spread": 0.048750000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.33041666666666664,
+        "control_accuracy": 0.5004166666666667,
+        "selectivity": -0.1700000000000001,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.33125,
+          0.31375,
+          0.34625
+        ],
+        "control_fold_accuracies": [
+          0.53,
+          0.4675,
+          0.50375
+        ],
+        "fold_spread": 0.03250000000000003,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5137499999999999,
+        "control_accuracy": 0.5408333333333334,
+        "selectivity": -0.02708333333333346,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5125,
+          0.47125,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.475,
+          0.5225,
+          0.625
+        ],
+        "fold_spread": 0.08625,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.48458333333333337,
+        "selectivity": 0.11833333333333329,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58,
+          0.5,
+          0.72875
+        ],
+        "control_fold_accuracies": [
+          0.5625,
+          0.495,
+          0.39625
+        ],
+        "fold_spread": 0.22875,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6441666666666667,
+        "control_accuracy": 0.44625000000000004,
+        "selectivity": 0.19791666666666663,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.685,
+          0.57375,
+          0.67375
+        ],
+        "control_fold_accuracies": [
+          0.48,
+          0.41375,
+          0.445
+        ],
+        "fold_spread": 0.11125000000000007,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.6129166666666667,
+        "control_accuracy": 0.6258333333333334,
+        "selectivity": -0.012916666666666687,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.64875,
+          0.5325,
+          0.6575
+        ],
+        "control_fold_accuracies": [
+          0.54875,
+          0.57875,
+          0.75
+        ],
+        "fold_spread": 0.125,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_S0/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-s0                   exit=0    0h13m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_s0.log                                  [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-s0
+pushed — outputs are now off this machine.
+seed override: experiment.seed=42 capacity_seed=42 results=data/gemma3_12b/results_S42 figures=figures/gemma3_12b_S42
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<05:43,  3.10it/s]Loading weights:   2%|▏         | 16/1065 [00:00<00:23, 45.29it/s]Loading weights:   3%|▎         | 30/1065 [00:00<00:15, 68.83it/s]Loading weights:   4%|▍         | 44/1065 [00:00<00:12, 83.76it/s]Loading weights:   6%|▌         | 63/1065 [00:00<00:09, 111.06it/s]Loading weights:   7%|▋         | 78/1065 [00:00<00:08, 121.09it/s]Loading weights:   9%|▊         | 93/1065 [00:01<00:08, 121.08it/s]Loading weights:  10%|█         | 108/1065 [00:01<00:08, 114.55it/s]Loading weights:  12%|█▏        | 127/1065 [00:01<00:06, 134.01it/s]Loading weights:  13%|█▎        | 142/1065 [00:01<00:06, 134.65it/s]Loading weights:  15%|█▍        | 157/1065 [00:01<00:06, 133.38it/s]Loading weights:  16%|█▌        | 171/1065 [00:01<00:07, 126.67it/s]Loading weights:  17%|█▋        | 186/1065 [00:01<00:06, 125.97it/s]Loading weights:  19%|█▉        | 200/1065 [00:01<00:07, 122.47it/s]Loading weights:  20%|██        | 213/1065 [00:01<00:06, 123.65it/s]Loading weights:  22%|██▏       | 231/1065 [00:02<00:06, 133.61it/s]Loading weights:  23%|██▎       | 247/1065 [00:02<00:05, 140.04it/s]Loading weights:  25%|██▍       | 262/1065 [00:02<00:06, 133.71it/s]Loading weights:  26%|██▌       | 277/1065 [00:02<00:06, 130.54it/s]Loading weights:  27%|██▋       | 291/1065 [00:02<00:06, 125.98it/s]Loading weights:  29%|██▉       | 309/1065 [00:02<00:05, 137.86it/s]Loading weights:  30%|███       | 324/1065 [00:02<00:05, 140.22it/s]Loading weights:  32%|███▏      | 341/1065 [00:02<00:05, 137.85it/s]Loading weights:  33%|███▎      | 355/1065 [00:03<00:05, 125.71it/s]Loading weights:  35%|███▍      | 368/1065 [00:03<00:05, 123.27it/s]Loading weights:  36%|███▌      | 382/1065 [00:03<00:05, 120.34it/s]Loading weights:  37%|███▋      | 399/1065 [00:03<00:05, 131.16it/s]Loading weights:  39%|███▉      | 416/1065 [00:03<00:04, 140.39it/s]Loading weights:  41%|████      | 432/1065 [00:03<00:04, 136.74it/s]Loading weights:  42%|████▏     | 446/1065 [00:03<00:05, 122.56it/s]Loading weights:  44%|████▎     | 464/1065 [00:03<00:04, 136.30it/s]Loading weights:  45%|████▍     | 479/1065 [00:03<00:04, 134.61it/s]Loading weights:  47%|████▋     | 497/1065 [00:04<00:04, 138.20it/s]Loading weights:  48%|████▊     | 512/1065 [00:04<00:04, 118.13it/s]Loading weights:  50%|████▉     | 529/1065 [00:04<00:04, 130.01it/s]Loading weights:  51%|█████▏    | 546/1065 [00:04<00:03, 138.37it/s]Loading weights:  53%|█████▎    | 562/1065 [00:04<00:03, 135.86it/s]Loading weights:  54%|█████▍    | 577/1065 [00:04<00:03, 124.71it/s]Loading weights:  56%|█████▌    | 596/1065 [00:04<00:03, 139.19it/s]Loading weights:  57%|█████▋    | 611/1065 [00:04<00:03, 141.19it/s]Loading weights:  59%|█████▉    | 627/1065 [00:05<00:02, 146.06it/s]Loading weights:  79%|███████▉  | 841/1065 [00:05<00:00, 701.44it/s]Loading weights:  99%|█████████▉| 1053/1065 [00:05<00:00, 1101.48it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 203.48it/s] 
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1498.32it/s]
+[rq1 final_token] 30/600 (5%)  17s elapsed  1.9/s  ETA 4.9m
+[rq1 final_token] 60/600 (10%)  33s elapsed  1.9/s  ETA 4.7m
+[rq1 final_token] 90/600 (15%)  49s elapsed  1.9/s  ETA 4.5m
+[rq1 final_token] 120/600 (20%)  65s elapsed  1.9/s  ETA 4.2m
+[rq1 final_token] 150/600 (25%)  81s elapsed  1.9/s  ETA 3.9m
+[rq1 final_token] 180/600 (30%)  1.6m elapsed  1.9/s  ETA 3.7m
+[rq1 final_token] 210/600 (35%)  1.9m elapsed  1.9/s  ETA 3.4m
+[rq1 final_token] 240/600 (40%)  2.1m elapsed  1.9/s  ETA 3.2m
+[rq1 final_token] 270/600 (45%)  2.4m elapsed  1.9/s  ETA 2.9m
+[rq1 final_token] 300/600 (50%)  2.7m elapsed  1.9/s  ETA 2.6m
+[rq1 final_token] 330/600 (55%)  2.9m elapsed  1.9/s  ETA 2.4m
+[rq1 final_token] 360/600 (60%)  3.2m elapsed  1.9/s  ETA 2.1m
+[rq1 final_token] 390/600 (65%)  3.5m elapsed  1.9/s  ETA 1.8m
+[rq1 final_token] 420/600 (70%)  3.7m elapsed  1.9/s  ETA 1.6m
+[rq1 final_token] 450/600 (75%)  4.0m elapsed  1.9/s  ETA 79s
+[rq1 final_token] 480/600 (80%)  4.3m elapsed  1.9/s  ETA 63s
+[rq1 final_token] 510/600 (85%)  4.5m elapsed  1.9/s  ETA 48s
+[rq1 final_token] 540/600 (90%)  4.8m elapsed  1.9/s  ETA 32s
+[rq1 final_token] 570/600 (95%)  5.1m elapsed  1.9/s  ETA 16s
+[rq1 final_token] 600/600 (100%)  5.3m elapsed  1.9/s
+[rq1 entity_token] 30/600 (5%)  19s elapsed  1.6/s  ETA 6.1m
+[rq1 entity_token] 60/600 (10%)  38s elapsed  1.6/s  ETA 5.8m
+[rq1 entity_token] 90/600 (15%)  57s elapsed  1.6/s  ETA 5.4m
+[rq1 entity_token] 120/600 (20%)  77s elapsed  1.6/s  ETA 5.1m
+[rq1 entity_token] 150/600 (25%)  1.6m elapsed  1.6/s  ETA 4.8m
+[rq1 entity_token] 180/600 (30%)  1.9m elapsed  1.6/s  ETA 4.5m
+[rq1 entity_token] 210/600 (35%)  2.2m elapsed  1.6/s  ETA 4.2m
+[rq1 entity_token] 240/600 (40%)  2.6m elapsed  1.6/s  ETA 3.8m
+[rq1 entity_token] 270/600 (45%)  2.9m elapsed  1.6/s  ETA 3.5m
+[rq1 entity_token] 300/600 (50%)  3.2m elapsed  1.6/s  ETA 3.2m
+[rq1 entity_token] 330/600 (55%)  3.5m elapsed  1.6/s  ETA 2.9m
+[rq1 entity_token] 360/600 (60%)  3.8m elapsed  1.6/s  ETA 2.6m
+[rq1 entity_token] 390/600 (65%)  4.2m elapsed  1.6/s  ETA 2.2m
+[rq1 entity_token] 420/600 (70%)  4.5m elapsed  1.6/s  ETA 1.9m
+[rq1 entity_token] 450/600 (75%)  4.8m elapsed  1.6/s  ETA 1.6m
+[rq1 entity_token] 480/600 (80%)  5.1m elapsed  1.6/s  ETA 77s
+[rq1 entity_token] 510/600 (85%)  5.5m elapsed  1.6/s  ETA 58s
+[rq1 entity_token] 540/600 (90%)  5.8m elapsed  1.6/s  ETA 38s
+[rq1 entity_token] 570/600 (95%)  6.1m elapsed  1.6/s  ETA 19s
+[rq1 entity_token] 600/600 (100%)  6.5m elapsed  1.6/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      36,
+      36
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 42,
+    "git_commit": "109e32a07a13de54efff9344fc9d895b1f26d4a7",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.31916666666666665,
+        "control_accuracy": 0.5016666666666667,
+        "selectivity": -0.18250000000000005,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32875,
+          0.33375,
+          0.295
+        ],
+        "control_fold_accuracies": [
+          0.49875,
+          0.51375,
+          0.4925
+        ],
+        "fold_spread": 0.03875000000000001,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.5125000000000001,
+        "selectivity": -0.2537500000000001,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.27,
+          0.28375,
+          0.2225
+        ],
+        "control_fold_accuracies": [
+          0.51625,
+          0.51,
+          0.51125
+        ],
+        "fold_spread": 0.06125,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.27,
+        "control_accuracy": 0.49,
+        "selectivity": -0.21999999999999997,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.26625,
+          0.29625,
+          0.2475
+        ],
+        "control_fold_accuracies": [
+          0.46,
+          0.51,
+          0.5
+        ],
+        "fold_spread": 0.048750000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.3133333333333334,
+        "control_accuracy": 0.50625,
+        "selectivity": -0.19291666666666657,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.31125,
+          0.30875,
+          0.32
+        ],
+        "control_fold_accuracies": [
+          0.51,
+          0.51,
+          0.49875
+        ],
+        "fold_spread": 0.011249999999999982,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5137499999999999,
+        "control_accuracy": 0.43083333333333335,
+        "selectivity": 0.08291666666666658,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5125,
+          0.47125,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.3225,
+          0.43125,
+          0.53875
+        ],
+        "fold_spread": 0.08625,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.47000000000000003,
+        "selectivity": 0.13291666666666663,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58,
+          0.5,
+          0.72875
+        ],
+        "control_fold_accuracies": [
+          0.63375,
+          0.3275,
+          0.44875
+        ],
+        "fold_spread": 0.22875,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6441666666666667,
+        "control_accuracy": 0.6175,
+        "selectivity": 0.026666666666666616,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.685,
+          0.57375,
+          0.67375
+        ],
+        "control_fold_accuracies": [
+          0.75625,
+          0.47125,
+          0.625
+        ],
+        "fold_spread": 0.11125000000000007,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.36708333333333326,
+        "selectivity": 0.2358333333333334,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.65875,
+          0.5675,
+          0.5825
+        ],
+        "control_fold_accuracies": [
+          0.22375,
+          0.35,
+          0.5275
+        ],
+        "fold_spread": 0.09124999999999994,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_S42/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-s42                  exit=0    0h12m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_s42.log                                 [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-s42
+pushed — outputs are now off this machine.
+seed override: experiment.seed=7 capacity_seed=7 results=data/gemma3_12b/results_S7 figures=figures/gemma3_12b_S7
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<05:40,  3.13it/s]Loading weights:   2%|▏         | 16/1065 [00:00<00:22, 45.69it/s]Loading weights:   3%|▎         | 30/1065 [00:00<00:14, 69.36it/s]Loading weights:   4%|▍         | 44/1065 [00:00<00:12, 84.43it/s]Loading weights:   6%|▌         | 62/1065 [00:00<00:09, 109.06it/s]Loading weights:   7%|▋         | 78/1065 [00:00<00:08, 122.78it/s]Loading weights:   9%|▉         | 94/1065 [00:01<00:07, 125.08it/s]Loading weights:  10%|█         | 108/1065 [00:01<00:07, 122.37it/s]Loading weights:  11%|█▏        | 122/1065 [00:01<00:07, 120.40it/s]Loading weights:  13%|█▎        | 135/1065 [00:01<00:07, 122.93it/s]Loading weights:  14%|█▍        | 148/1065 [00:01<00:07, 122.80it/s]Loading weights:  15%|█▌        | 161/1065 [00:01<00:07, 124.38it/s]Loading weights:  17%|█▋        | 180/1065 [00:01<00:06, 140.66it/s]Loading weights:  18%|█▊        | 195/1065 [00:01<00:06, 142.62it/s]Loading weights:  20%|█▉        | 210/1065 [00:01<00:06, 133.98it/s]Loading weights:  21%|██        | 224/1065 [00:01<00:06, 135.57it/s]Loading weights:  22%|██▏       | 238/1065 [00:02<00:06, 121.37it/s]Loading weights:  24%|██▍       | 256/1065 [00:02<00:06, 134.64it/s]Loading weights:  26%|██▌       | 272/1065 [00:02<00:05, 140.60it/s]Loading weights:  27%|██▋       | 289/1065 [00:02<00:05, 139.37it/s]Loading weights:  29%|██▊       | 304/1065 [00:02<00:06, 126.72it/s]Loading weights:  30%|███       | 322/1065 [00:02<00:05, 135.71it/s]Loading weights:  32%|███▏      | 341/1065 [00:02<00:05, 140.00it/s]Loading weights:  33%|███▎      | 356/1065 [00:03<00:05, 119.13it/s]Loading weights:  35%|███▍      | 369/1065 [00:03<00:05, 117.92it/s]Loading weights:  36%|███▋      | 387/1065 [00:03<00:05, 130.73it/s]Loading weights:  38%|███▊      | 401/1065 [00:03<00:05, 132.50it/s]Loading weights:  39%|███▉      | 419/1065 [00:03<00:04, 136.25it/s]Loading weights:  41%|████      | 433/1065 [00:03<00:04, 130.32it/s]Loading weights:  42%|████▏     | 447/1065 [00:03<00:04, 125.98it/s]Loading weights:  44%|████▎     | 465/1065 [00:03<00:04, 139.40it/s]Loading weights:  45%|████▌     | 480/1065 [00:03<00:04, 139.30it/s]Loading weights:  46%|████▋     | 495/1065 [00:04<00:04, 140.55it/s]Loading weights:  48%|████▊     | 510/1065 [00:04<00:04, 129.57it/s]Loading weights:  49%|████▉     | 524/1065 [00:04<00:04, 122.39it/s]Loading weights:  51%|█████     | 538/1065 [00:04<00:04, 120.61it/s]Loading weights:  52%|█████▏    | 556/1065 [00:04<00:03, 134.24it/s]Loading weights:  54%|█████▎    | 572/1065 [00:04<00:03, 140.48it/s]Loading weights:  55%|█████▌    | 588/1065 [00:04<00:03, 137.14it/s]Loading weights:  57%|█████▋    | 602/1065 [00:04<00:03, 130.98it/s]Loading weights:  58%|█████▊    | 616/1065 [00:04<00:03, 126.60it/s]Loading weights:  75%|███████▍  | 795/1065 [00:05<00:00, 567.28it/s]Loading weights:  85%|████████▌ | 910/1065 [00:05<00:00, 703.31it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 201.61it/s]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1459.06it/s]
+[rq1 final_token] 30/600 (5%)  20s elapsed  1.6/s  ETA 5.9m
+[rq1 final_token] 60/600 (10%)  37s elapsed  1.7/s  ETA 5.4m
+[rq1 final_token] 90/600 (15%)  53s elapsed  1.8/s  ETA 4.8m
+[rq1 final_token] 120/600 (20%)  69s elapsed  1.8/s  ETA 4.5m
+[rq1 final_token] 150/600 (25%)  84s elapsed  1.8/s  ETA 4.1m
+[rq1 final_token] 180/600 (30%)  1.7m elapsed  1.8/s  ETA 3.8m
+[rq1 final_token] 210/600 (35%)  1.9m elapsed  1.8/s  ETA 3.6m
+[rq1 final_token] 240/600 (40%)  2.2m elapsed  1.8/s  ETA 3.3m
+[rq1 final_token] 270/600 (45%)  2.5m elapsed  1.8/s  ETA 3.0m
+[rq1 final_token] 300/600 (50%)  2.7m elapsed  1.8/s  ETA 2.7m
+[rq1 final_token] 330/600 (55%)  3.0m elapsed  1.8/s  ETA 2.4m
+[rq1 final_token] 360/600 (60%)  3.3m elapsed  1.8/s  ETA 2.2m
+[rq1 final_token] 390/600 (65%)  3.5m elapsed  1.8/s  ETA 1.9m
+[rq1 final_token] 420/600 (70%)  3.8m elapsed  1.9/s  ETA 1.6m
+[rq1 final_token] 450/600 (75%)  4.1m elapsed  1.9/s  ETA 81s
+[rq1 final_token] 480/600 (80%)  4.3m elapsed  1.9/s  ETA 65s
+[rq1 final_token] 510/600 (85%)  4.6m elapsed  1.9/s  ETA 48s
+[rq1 final_token] 540/600 (90%)  4.9m elapsed  1.9/s  ETA 32s
+[rq1 final_token] 570/600 (95%)  5.1m elapsed  1.9/s  ETA 16s
+[rq1 final_token] 600/600 (100%)  5.4m elapsed  1.9/s
+[rq1 entity_token] 30/600 (5%)  16s elapsed  1.9/s  ETA 5.0m
+[rq1 entity_token] 60/600 (10%)  32s elapsed  1.9/s  ETA 4.7m
+[rq1 entity_token] 90/600 (15%)  48s elapsed  1.9/s  ETA 4.5m
+[rq1 entity_token] 120/600 (20%)  64s elapsed  1.9/s  ETA 4.2m
+[rq1 entity_token] 150/600 (25%)  79s elapsed  1.9/s  ETA 4.0m
+[rq1 entity_token] 180/600 (30%)  1.6m elapsed  1.9/s  ETA 3.7m
+[rq1 entity_token] 210/600 (35%)  1.9m elapsed  1.9/s  ETA 3.4m
+[rq1 entity_token] 240/600 (40%)  2.1m elapsed  1.9/s  ETA 3.2m
+[rq1 entity_token] 270/600 (45%)  2.4m elapsed  1.9/s  ETA 2.9m
+[rq1 entity_token] 300/600 (50%)  2.7m elapsed  1.9/s  ETA 2.7m
+[rq1 entity_token] 330/600 (55%)  2.9m elapsed  1.9/s  ETA 2.4m
+[rq1 entity_token] 360/600 (60%)  3.2m elapsed  1.9/s  ETA 2.1m
+[rq1 entity_token] 390/600 (65%)  3.4m elapsed  1.9/s  ETA 1.9m
+[rq1 entity_token] 420/600 (70%)  3.7m elapsed  1.9/s  ETA 1.6m
+[rq1 entity_token] 450/600 (75%)  4.0m elapsed  1.9/s  ETA 80s
+[rq1 entity_token] 480/600 (80%)  4.2m elapsed  1.9/s  ETA 64s
+[rq1 entity_token] 510/600 (85%)  4.5m elapsed  1.9/s  ETA 48s
+[rq1 entity_token] 540/600 (90%)  4.8m elapsed  1.9/s  ETA 32s
+[rq1 entity_token] 570/600 (95%)  5.0m elapsed  1.9/s  ETA 16s
+[rq1 entity_token] 600/600 (100%)  5.3m elapsed  1.9/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      36,
+      36
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 7,
+    "git_commit": "485a930a8f3d8cdda3fb79315b48d7745246306f",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.31916666666666665,
+        "control_accuracy": 0.49124999999999996,
+        "selectivity": -0.1720833333333333,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32875,
+          0.33375,
+          0.295
+        ],
+        "control_fold_accuracies": [
+          0.50625,
+          0.465,
+          0.5025
+        ],
+        "fold_spread": 0.03875000000000001,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.4970833333333333,
+        "selectivity": -0.23833333333333334,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.27,
+          0.28375,
+          0.2225
+        ],
+        "control_fold_accuracies": [
+          0.505,
+          0.50375,
+          0.4825
+        ],
+        "fold_spread": 0.06125,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.27,
+        "control_accuracy": 0.4816666666666667,
+        "selectivity": -0.21166666666666667,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.26625,
+          0.29625,
+          0.2475
+        ],
+        "control_fold_accuracies": [
+          0.49375,
+          0.44,
+          0.51125
+        ],
+        "fold_spread": 0.048750000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.33,
+        "control_accuracy": 0.5008333333333334,
+        "selectivity": -0.17083333333333334,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.33,
+          0.3075,
+          0.3525
+        ],
+        "control_fold_accuracies": [
+          0.50875,
+          0.485,
+          0.50875
+        ],
+        "fold_spread": 0.044999999999999984,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5137499999999999,
+        "control_accuracy": 0.635,
+        "selectivity": -0.12125000000000008,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5125,
+          0.47125,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.40375,
+          0.74875,
+          0.7525
+        ],
+        "fold_spread": 0.08625,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.6774999999999999,
+        "selectivity": -0.07458333333333322,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58,
+          0.5,
+          0.72875
+        ],
+        "control_fold_accuracies": [
+          0.55125,
+          0.75,
+          0.73125
+        ],
+        "fold_spread": 0.22875,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6441666666666667,
+        "control_accuracy": 0.3958333333333333,
+        "selectivity": 0.24833333333333335,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.685,
+          0.57375,
+          0.67375
+        ],
+        "control_fold_accuracies": [
+          0.41,
+          0.3325,
+          0.445
+        ],
+        "fold_spread": 0.11125000000000007,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.535,
+        "control_accuracy": 0.47208333333333335,
+        "selectivity": 0.06291666666666668,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.53,
+          0.505,
+          0.57
+        ],
+        "control_fold_accuracies": [
+          0.63125,
+          0.31375,
+          0.47125
+        ],
+        "fold_spread": 0.06499999999999995,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_S7/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-s7                   exit=0    0h11m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_s7.log                                  [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-s7
+pushed — outputs are now off this machine.
+seed override: experiment.seed=123 capacity_seed=123 results=data/gemma3_12b/results_S123 figures=figures/gemma3_12b_S123
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<06:00,  2.95it/s]Loading weights:   2%|▏         | 17/1065 [00:00<00:22, 46.61it/s]Loading weights:   3%|▎         | 31/1065 [00:00<00:14, 69.24it/s]Loading weights:   5%|▍         | 49/1065 [00:00<00:10, 100.00it/s]Loading weights:   6%|▌         | 63/1065 [00:00<00:09, 110.15it/s]Loading weights:   7%|▋         | 78/1065 [00:00<00:08, 120.67it/s]Loading weights:   9%|▉         | 94/1065 [00:01<00:07, 123.46it/s]Loading weights:  10%|█         | 108/1065 [00:01<00:07, 121.00it/s]Loading weights:  11%|█▏        | 122/1065 [00:01<00:07, 119.39it/s]Loading weights:  13%|█▎        | 135/1065 [00:01<00:07, 121.76it/s]Loading weights:  14%|█▍        | 148/1065 [00:01<00:07, 122.09it/s]Loading weights:  15%|█▌        | 161/1065 [00:01<00:07, 123.83it/s]Loading weights:  17%|█▋        | 179/1065 [00:01<00:06, 137.20it/s]Loading weights:  18%|█▊        | 195/1065 [00:01<00:06, 141.39it/s]Loading weights:  20%|█▉        | 211/1065 [00:01<00:06, 137.03it/s]Loading weights:  21%|██        | 225/1065 [00:02<00:06, 128.67it/s]Loading weights:  22%|██▏       | 239/1065 [00:02<00:06, 124.87it/s]Loading weights:  24%|██▍       | 257/1065 [00:02<00:05, 137.14it/s]Loading weights:  26%|██▌       | 273/1065 [00:02<00:05, 141.03it/s]Loading weights:  27%|██▋       | 288/1065 [00:02<00:05, 142.52it/s]Loading weights:  28%|██▊       | 303/1065 [00:02<00:05, 128.19it/s]Loading weights:  30%|██▉       | 317/1065 [00:02<00:06, 124.42it/s]Loading weights:  32%|███▏      | 336/1065 [00:02<00:05, 139.57it/s]Loading weights:  33%|███▎      | 351/1065 [00:02<00:05, 140.04it/s]Loading weights:  34%|███▍      | 366/1065 [00:03<00:05, 136.44it/s]Loading weights:  36%|███▌      | 380/1065 [00:03<00:05, 124.29it/s]Loading weights:  37%|███▋      | 394/1065 [00:03<00:05, 121.67it/s]Loading weights:  38%|███▊      | 408/1065 [00:03<00:05, 119.62it/s]Loading weights:  40%|███▉      | 425/1065 [00:03<00:04, 129.88it/s]Loading weights:  41%|████      | 439/1065 [00:03<00:04, 128.45it/s]Loading weights:  43%|████▎     | 455/1065 [00:03<00:04, 136.24it/s]Loading weights:  44%|████▍     | 469/1065 [00:03<00:04, 136.08it/s]Loading weights:  45%|████▌     | 484/1065 [00:03<00:04, 130.94it/s]Loading weights:  47%|████▋     | 498/1065 [00:04<00:04, 125.41it/s]Loading weights:  48%|████▊     | 511/1065 [00:04<00:04, 121.58it/s]Loading weights:  49%|████▉     | 525/1065 [00:04<00:04, 118.86it/s]Loading weights:  51%|█████     | 543/1065 [00:04<00:03, 133.01it/s]Loading weights:  52%|█████▏    | 559/1065 [00:04<00:03, 136.79it/s]Loading weights:  54%|█████▍    | 575/1065 [00:04<00:03, 135.93it/s]Loading weights:  55%|█████▌    | 589/1065 [00:04<00:03, 129.97it/s]Loading weights:  57%|█████▋    | 603/1065 [00:04<00:03, 125.86it/s]Loading weights:  58%|█████▊    | 622/1065 [00:05<00:03, 140.99it/s]Loading weights:  77%|███████▋  | 815/1065 [00:05<00:00, 626.96it/s]Loading weights:  97%|█████████▋| 1032/1065 [00:05<00:00, 1058.50it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 202.98it/s] 
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1422.60it/s]
+[rq1 final_token] 30/600 (5%)  18s elapsed  1.9/s  ETA 5.0m
+[rq1 final_token] 60/600 (10%)  34s elapsed  1.9/s  ETA 4.8m
+[rq1 final_token] 90/600 (15%)  49s elapsed  1.9/s  ETA 4.5m
+[rq1 final_token] 120/600 (20%)  65s elapsed  1.9/s  ETA 4.2m
+[rq1 final_token] 150/600 (25%)  81s elapsed  1.9/s  ETA 4.0m
+[rq1 final_token] 180/600 (30%)  1.6m elapsed  1.9/s  ETA 3.7m
+[rq1 final_token] 210/600 (35%)  1.9m elapsed  1.9/s  ETA 3.4m
+[rq1 final_token] 240/600 (40%)  2.1m elapsed  1.9/s  ETA 3.2m
+[rq1 final_token] 270/600 (45%)  2.4m elapsed  1.9/s  ETA 2.9m
+[rq1 final_token] 300/600 (50%)  2.7m elapsed  1.9/s  ETA 2.6m
+[rq1 final_token] 330/600 (55%)  2.9m elapsed  1.9/s  ETA 2.4m
+[rq1 final_token] 360/600 (60%)  3.2m elapsed  1.9/s  ETA 2.1m
+[rq1 final_token] 390/600 (65%)  3.5m elapsed  1.9/s  ETA 1.9m
+[rq1 final_token] 420/600 (70%)  3.7m elapsed  1.9/s  ETA 1.6m
+[rq1 final_token] 450/600 (75%)  4.0m elapsed  1.9/s  ETA 80s
+[rq1 final_token] 480/600 (80%)  4.3m elapsed  1.9/s  ETA 64s
+[rq1 final_token] 510/600 (85%)  4.5m elapsed  1.9/s  ETA 48s
+[rq1 final_token] 540/600 (90%)  4.8m elapsed  1.9/s  ETA 32s
+[rq1 final_token] 570/600 (95%)  5.1m elapsed  1.9/s  ETA 16s
+[rq1 final_token] 600/600 (100%)  5.3m elapsed  1.9/s
+[rq1 entity_token] 30/600 (5%)  16s elapsed  1.8/s  ETA 5.2m
+[rq1 entity_token] 60/600 (10%)  32s elapsed  1.9/s  ETA 4.8m
+[rq1 entity_token] 90/600 (15%)  48s elapsed  1.9/s  ETA 4.5m
+[rq1 entity_token] 120/600 (20%)  64s elapsed  1.9/s  ETA 4.3m
+[rq1 entity_token] 150/600 (25%)  83s elapsed  1.8/s  ETA 4.1m
+[rq1 entity_token] 180/600 (30%)  1.6m elapsed  1.8/s  ETA 3.8m
+[rq1 entity_token] 210/600 (35%)  1.9m elapsed  1.8/s  ETA 3.5m
+[rq1 entity_token] 240/600 (40%)  2.2m elapsed  1.8/s  ETA 3.3m
+[rq1 entity_token] 270/600 (45%)  2.4m elapsed  1.8/s  ETA 3.0m
+[rq1 entity_token] 300/600 (50%)  2.7m elapsed  1.8/s  ETA 2.7m
+[rq1 entity_token] 330/600 (55%)  3.0m elapsed  1.8/s  ETA 2.4m
+[rq1 entity_token] 360/600 (60%)  3.2m elapsed  1.8/s  ETA 2.2m
+[rq1 entity_token] 390/600 (65%)  3.5m elapsed  1.9/s  ETA 1.9m
+[rq1 entity_token] 420/600 (70%)  3.8m elapsed  1.9/s  ETA 1.6m
+[rq1 entity_token] 450/600 (75%)  4.0m elapsed  1.9/s  ETA 81s
+[rq1 entity_token] 480/600 (80%)  4.3m elapsed  1.9/s  ETA 65s
+[rq1 entity_token] 510/600 (85%)  4.6m elapsed  1.9/s  ETA 48s
+[rq1 entity_token] 540/600 (90%)  4.8m elapsed  1.9/s  ETA 32s
+[rq1 entity_token] 570/600 (95%)  5.1m elapsed  1.9/s  ETA 16s
+[rq1 entity_token] 600/600 (100%)  5.4m elapsed  1.9/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      36,
+      36
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 123,
+    "git_commit": "b65154c3ff0870fd2581f4d4ab230eed49f329af",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.31916666666666665,
+        "control_accuracy": 0.49333333333333335,
+        "selectivity": -0.1741666666666667,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32875,
+          0.33375,
+          0.295
+        ],
+        "control_fold_accuracies": [
+          0.45875,
+          0.50875,
+          0.5125
+        ],
+        "fold_spread": 0.03875000000000001,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.5229166666666666,
+        "selectivity": -0.2641666666666666,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.27,
+          0.28375,
+          0.2225
+        ],
+        "control_fold_accuracies": [
+          0.51625,
+          0.52,
+          0.5325
+        ],
+        "fold_spread": 0.06125,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.27,
+        "control_accuracy": 0.49541666666666667,
+        "selectivity": -0.22541666666666665,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.26625,
+          0.29625,
+          0.2475
+        ],
+        "control_fold_accuracies": [
+          0.4975,
+          0.475,
+          0.51375
+        ],
+        "fold_spread": 0.048750000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.31833333333333336,
+        "control_accuracy": 0.50625,
+        "selectivity": -0.18791666666666662,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32,
+          0.305,
+          0.33
+        ],
+        "control_fold_accuracies": [
+          0.5025,
+          0.50375,
+          0.5125
+        ],
+        "fold_spread": 0.025000000000000022,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5137499999999999,
+        "control_accuracy": 0.5929166666666666,
+        "selectivity": -0.07916666666666672,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5125,
+          0.47125,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.40875,
+          0.67,
+          0.7
+        ],
+        "fold_spread": 0.08625,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.5779166666666667,
+        "selectivity": 0.02499999999999991,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58,
+          0.5,
+          0.72875
+        ],
+        "control_fold_accuracies": [
+          0.42375,
+          0.70125,
+          0.60875
+        ],
+        "fold_spread": 0.22875,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6441666666666667,
+        "control_accuracy": 0.58375,
+        "selectivity": 0.060416666666666674,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.685,
+          0.57375,
+          0.67375
+        ],
+        "control_fold_accuracies": [
+          0.5775,
+          0.5575,
+          0.61625
+        ],
+        "fold_spread": 0.11125000000000007,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.6066666666666667,
+        "control_accuracy": 0.445,
+        "selectivity": 0.16166666666666668,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.655,
+          0.60375,
+          0.56125
+        ],
+        "control_fold_accuracies": [
+          0.39125,
+          0.49375,
+          0.45
+        ],
+        "fold_spread": 0.09375,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_S123/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-s123                 exit=0    0h12m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_s123.log                                [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-s123
+pushed — outputs are now off this machine.
+seed override: experiment.seed=2024 capacity_seed=2024 results=data/gemma3_12b/results_S2024 figures=figures/gemma3_12b_S2024
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<06:12,  2.86it/s]Loading weights:   2%|▏         | 17/1065 [00:00<00:23, 45.54it/s]Loading weights:   3%|▎         | 31/1065 [00:00<00:15, 68.02it/s]Loading weights:   5%|▍         | 49/1065 [00:00<00:10, 98.54it/s]Loading weights:   6%|▌         | 63/1065 [00:00<00:09, 107.33it/s]Loading weights:   8%|▊         | 81/1065 [00:00<00:08, 119.62it/s]Loading weights:   9%|▉         | 95/1065 [00:01<00:08, 118.40it/s]Loading weights:  10%|█         | 109/1065 [00:01<00:08, 117.25it/s]Loading weights:  12%|█▏        | 127/1065 [00:01<00:07, 133.70it/s]Loading weights:  13%|█▎        | 142/1065 [00:01<00:06, 134.01it/s]Loading weights:  15%|█▍        | 156/1065 [00:01<00:06, 131.51it/s]Loading weights:  16%|█▌        | 170/1065 [00:01<00:06, 131.99it/s]Loading weights:  17%|█▋        | 185/1065 [00:01<00:06, 129.13it/s]Loading weights:  19%|█▊        | 199/1065 [00:01<00:06, 124.32it/s]Loading weights:  20%|█▉        | 212/1065 [00:01<00:06, 125.44it/s]Loading weights:  21%|██        | 225/1065 [00:02<00:06, 126.21it/s]Loading weights:  22%|██▏       | 239/1065 [00:02<00:06, 122.52it/s]Loading weights:  24%|██▍       | 256/1065 [00:02<00:05, 135.23it/s]Loading weights:  25%|██▌       | 271/1065 [00:02<00:05, 137.38it/s]Loading weights:  27%|██▋       | 286/1065 [00:02<00:05, 139.14it/s]Loading weights:  28%|██▊       | 301/1065 [00:02<00:05, 141.95it/s]Loading weights:  30%|██▉       | 316/1065 [00:02<00:06, 124.77it/s]Loading weights:  31%|███       | 330/1065 [00:02<00:06, 121.76it/s]Loading weights:  32%|███▏      | 343/1065 [00:02<00:05, 123.65it/s]Loading weights:  33%|███▎      | 356/1065 [00:03<00:05, 120.40it/s]Loading weights:  35%|███▍      | 369/1065 [00:03<00:05, 118.42it/s]Loading weights:  36%|███▋      | 387/1065 [00:03<00:05, 134.33it/s]Loading weights:  38%|███▊      | 401/1065 [00:03<00:04, 134.60it/s]Loading weights:  39%|███▉      | 416/1065 [00:03<00:04, 137.31it/s]Loading weights:  41%|████      | 432/1065 [00:03<00:04, 134.29it/s]Loading weights:  42%|████▏     | 446/1065 [00:03<00:04, 128.03it/s]Loading weights:  43%|████▎     | 460/1065 [00:03<00:04, 122.58it/s]Loading weights:  44%|████▍     | 473/1065 [00:03<00:04, 123.25it/s]Loading weights:  46%|████▌     | 490/1065 [00:04<00:04, 133.37it/s]Loading weights:  47%|████▋     | 505/1065 [00:04<00:04, 136.78it/s]Loading weights:  49%|████▊     | 519/1065 [00:04<00:04, 128.66it/s]Loading weights:  50%|█████     | 534/1065 [00:04<00:03, 134.28it/s]Loading weights:  51%|█████▏    | 548/1065 [00:04<00:03, 135.85it/s]Loading weights:  53%|█████▎    | 562/1065 [00:04<00:03, 129.35it/s]Loading weights:  54%|█████▍    | 576/1065 [00:04<00:03, 124.55it/s]Loading weights:  55%|█████▌    | 590/1065 [00:04<00:03, 121.59it/s]Loading weights:  57%|█████▋    | 607/1065 [00:04<00:03, 133.24it/s]Loading weights:  58%|█████▊    | 622/1065 [00:05<00:03, 137.76it/s]Loading weights:  76%|███████▌  | 812/1065 [00:05<00:00, 632.95it/s]Loading weights:  95%|█████████▍| 1010/1065 [00:05<00:00, 1018.97it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 200.81it/s] 
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1366.96it/s]
+[rq1 final_token] 30/600 (5%)  18s elapsed  1.9/s  ETA 5.0m
+[rq1 final_token] 60/600 (10%)  34s elapsed  1.9/s  ETA 4.8m
+[rq1 final_token] 90/600 (15%)  50s elapsed  1.9/s  ETA 4.5m
+[rq1 final_token] 120/600 (20%)  66s elapsed  1.9/s  ETA 4.3m
+[rq1 final_token] 150/600 (25%)  82s elapsed  1.9/s  ETA 4.0m
+[rq1 final_token] 180/600 (30%)  1.6m elapsed  1.9/s  ETA 3.8m
+[rq1 final_token] 210/600 (35%)  1.9m elapsed  1.8/s  ETA 3.5m
+[rq1 final_token] 240/600 (40%)  2.2m elapsed  1.8/s  ETA 3.3m
+[rq1 final_token] 270/600 (45%)  2.5m elapsed  1.8/s  ETA 3.0m
+[rq1 final_token] 300/600 (50%)  2.7m elapsed  1.8/s  ETA 2.7m
+[rq1 final_token] 330/600 (55%)  3.0m elapsed  1.9/s  ETA 2.4m
+[rq1 final_token] 360/600 (60%)  3.3m elapsed  1.9/s  ETA 2.2m
+[rq1 final_token] 390/600 (65%)  3.6m elapsed  1.8/s  ETA 1.9m
+[rq1 final_token] 420/600 (70%)  3.9m elapsed  1.8/s  ETA 1.6m
+[rq1 final_token] 450/600 (75%)  4.1m elapsed  1.8/s  ETA 82s
+[rq1 final_token] 480/600 (80%)  4.4m elapsed  1.8/s  ETA 66s
+[rq1 final_token] 510/600 (85%)  4.7m elapsed  1.8/s  ETA 50s
+[rq1 final_token] 540/600 (90%)  5.1m elapsed  1.8/s  ETA 34s
+[rq1 final_token] 570/600 (95%)  5.5m elapsed  1.8/s  ETA 17s
+[rq1 final_token] 600/600 (100%)  5.8m elapsed  1.7/s
+[rq1 entity_token] 30/600 (5%)  17s elapsed  1.8/s  ETA 5.2m
+[rq1 entity_token] 60/600 (10%)  33s elapsed  1.8/s  ETA 5.0m
+[rq1 entity_token] 90/600 (15%)  49s elapsed  1.8/s  ETA 4.7m
+[rq1 entity_token] 120/600 (20%)  66s elapsed  1.8/s  ETA 4.4m
+[rq1 entity_token] 150/600 (25%)  82s elapsed  1.8/s  ETA 4.1m
+[rq1 entity_token] 180/600 (30%)  1.6m elapsed  1.8/s  ETA 3.8m
+[rq1 entity_token] 210/600 (35%)  1.9m elapsed  1.8/s  ETA 3.5m
+[rq1 entity_token] 240/600 (40%)  2.2m elapsed  1.8/s  ETA 3.3m
+[rq1 entity_token] 270/600 (45%)  2.4m elapsed  1.8/s  ETA 3.0m
+[rq1 entity_token] 300/600 (50%)  2.8m elapsed  1.8/s  ETA 2.8m
+[rq1 entity_token] 330/600 (55%)  3.1m elapsed  1.8/s  ETA 2.5m
+[rq1 entity_token] 360/600 (60%)  3.4m elapsed  1.8/s  ETA 2.2m
+[rq1 entity_token] 390/600 (65%)  3.7m elapsed  1.8/s  ETA 2.0m
+[rq1 entity_token] 420/600 (70%)  4.0m elapsed  1.8/s  ETA 1.7m
+[rq1 entity_token] 450/600 (75%)  4.3m elapsed  1.8/s  ETA 86s
+[rq1 entity_token] 480/600 (80%)  4.6m elapsed  1.8/s  ETA 69s
+[rq1 entity_token] 510/600 (85%)  4.9m elapsed  1.7/s  ETA 52s
+[rq1 entity_token] 540/600 (90%)  5.2m elapsed  1.7/s  ETA 34s
+[rq1 entity_token] 570/600 (95%)  5.5m elapsed  1.7/s  ETA 17s
+[rq1 entity_token] 600/600 (100%)  5.8m elapsed  1.7/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      36,
+      36
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 2024,
+    "git_commit": "ba64fc89a1c0894d720a516d3c8b1b11e3a5d44a",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.31916666666666665,
+        "control_accuracy": 0.4891666666666667,
+        "selectivity": -0.17000000000000004,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32875,
+          0.33375,
+          0.295
+        ],
+        "control_fold_accuracies": [
+          0.495,
+          0.47625,
+          0.49625
+        ],
+        "fold_spread": 0.03875000000000001,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.5320833333333334,
+        "selectivity": -0.2733333333333334,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.27,
+          0.28375,
+          0.2225
+        ],
+        "control_fold_accuracies": [
+          0.53875,
+          0.515,
+          0.5425
+        ],
+        "fold_spread": 0.06125,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.27,
+        "control_accuracy": 0.5133333333333333,
+        "selectivity": -0.2433333333333333,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.26625,
+          0.29625,
+          0.2475
+        ],
+        "control_fold_accuracies": [
+          0.5125,
+          0.51625,
+          0.51125
+        ],
+        "fold_spread": 0.048750000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.32708333333333334,
+        "control_accuracy": 0.5233333333333333,
+        "selectivity": -0.19624999999999998,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.32,
+          0.32875,
+          0.3325
+        ],
+        "control_fold_accuracies": [
+          0.53125,
+          0.49875,
+          0.54
+        ],
+        "fold_spread": 0.012500000000000011,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5137499999999999,
+        "control_accuracy": 0.6266666666666666,
+        "selectivity": -0.11291666666666667,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5125,
+          0.47125,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.63875,
+          0.61625,
+          0.625
+        ],
+        "fold_spread": 0.08625,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.6029166666666667,
+        "control_accuracy": 0.44416666666666665,
+        "selectivity": 0.15875,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58,
+          0.5,
+          0.72875
+        ],
+        "control_fold_accuracies": [
+          0.395,
+          0.47,
+          0.4675
+        ],
+        "fold_spread": 0.22875,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6441666666666667,
+        "control_accuracy": 0.3933333333333333,
+        "selectivity": 0.25083333333333335,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.685,
+          0.57375,
+          0.67375
+        ],
+        "control_fold_accuracies": [
+          0.36375,
+          0.575,
+          0.24125
+        ],
+        "fold_spread": 0.11125000000000007,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.5925,
+        "control_accuracy": 0.5791666666666667,
+        "selectivity": 0.013333333333333308,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.59375,
+          0.6425,
+          0.54125
+        ],
+        "control_fold_accuracies": [
+          0.39125,
+          0.7425,
+          0.60375
+        ],
+        "fold_spread": 0.10124999999999995,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_S2024/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-s2024                exit=0    0h16m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_s2024.log                               [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-s2024
+pushed — outputs are now off this machine.
+layer override: band=(18, 18) results=data/gemma3_12b/results_L18 figures=figures/gemma3_12b_L18
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<05:50,  3.04it/s]Loading weights:   2%|▏         | 16/1065 [00:00<00:23, 44.51it/s]Loading weights:   3%|▎         | 30/1065 [00:00<00:15, 67.79it/s]Loading weights:   4%|▍         | 44/1065 [00:00<00:12, 82.67it/s]Loading weights:   6%|▌         | 62/1065 [00:00<00:09, 107.24it/s]Loading weights:   7%|▋         | 78/1065 [00:00<00:08, 120.73it/s]Loading weights:   9%|▊         | 92/1065 [00:01<00:07, 125.97it/s]Loading weights:  10%|▉         | 106/1065 [00:01<00:07, 122.28it/s]Loading weights:  11%|█▏        | 121/1065 [00:01<00:07, 122.66it/s]Loading weights:  13%|█▎        | 135/1065 [00:01<00:07, 118.50it/s]Loading weights:  14%|█▍        | 148/1065 [00:01<00:07, 119.29it/s]Loading weights:  15%|█▌        | 161/1065 [00:01<00:07, 121.21it/s]Loading weights:  17%|█▋        | 178/1065 [00:01<00:06, 133.75it/s]Loading weights:  18%|█▊        | 194/1065 [00:01<00:06, 138.60it/s]Loading weights:  20%|█▉        | 209/1065 [00:01<00:06, 140.85it/s]Loading weights:  21%|██        | 224/1065 [00:02<00:06, 131.37it/s]Loading weights:  22%|██▏       | 238/1065 [00:02<00:06, 125.99it/s]Loading weights:  24%|██▎       | 252/1065 [00:02<00:06, 122.44it/s]Loading weights:  25%|██▌       | 270/1065 [00:02<00:05, 137.10it/s]Loading weights:  27%|██▋       | 284/1065 [00:02<00:05, 136.14it/s]Loading weights:  28%|██▊       | 299/1065 [00:02<00:05, 138.69it/s]Loading weights:  29%|██▉       | 314/1065 [00:02<00:05, 141.53it/s]Loading weights:  31%|███       | 329/1065 [00:02<00:06, 118.77it/s]Loading weights:  32%|███▏      | 343/1065 [00:02<00:05, 123.58it/s]Loading weights:  33%|███▎      | 356/1065 [00:03<00:05, 120.20it/s]Loading weights:  35%|███▍      | 369/1065 [00:03<00:05, 117.88it/s]Loading weights:  36%|███▌      | 386/1065 [00:03<00:05, 130.95it/s]Loading weights:  38%|███▊      | 400/1065 [00:03<00:05, 132.00it/s]Loading weights:  39%|███▉      | 415/1065 [00:03<00:04, 135.34it/s]Loading weights:  40%|████      | 430/1065 [00:03<00:04, 139.20it/s]Loading weights:  42%|████▏     | 445/1065 [00:03<00:04, 131.81it/s]Loading weights:  43%|████▎     | 459/1065 [00:03<00:04, 125.68it/s]Loading weights:  44%|████▍     | 472/1065 [00:03<00:04, 122.91it/s]Loading weights:  46%|████▌     | 486/1065 [00:04<00:04, 119.72it/s]Loading weights:  47%|████▋     | 499/1065 [00:04<00:04, 121.61it/s]Loading weights:  48%|████▊     | 512/1065 [00:04<00:04, 115.12it/s]Loading weights:  50%|████▉     | 529/1065 [00:04<00:04, 127.12it/s]Loading weights:  51%|█████▏    | 546/1065 [00:04<00:03, 136.51it/s]Loading weights:  53%|█████▎    | 560/1065 [00:04<00:03, 135.72it/s]Loading weights:  54%|█████▍    | 575/1065 [00:04<00:03, 129.96it/s]Loading weights:  55%|█████▌    | 589/1065 [00:04<00:03, 123.76it/s]Loading weights:  57%|█████▋    | 603/1065 [00:05<00:03, 120.50it/s]Loading weights:  58%|█████▊    | 619/1065 [00:05<00:03, 130.84it/s]Loading weights:  73%|███████▎  | 781/1065 [00:05<00:00, 534.44it/s]Loading weights:  92%|█████████▏| 979/1065 [00:05<00:00, 938.04it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 198.31it/s]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 1296.67it/s]
+[rq1 final_token] 30/600 (5%)  19s elapsed  1.7/s  ETA 5.4m
+[rq1 final_token] 60/600 (10%)  37s elapsed  1.7/s  ETA 5.3m
+[rq1 final_token] 90/600 (15%)  54s elapsed  1.7/s  ETA 4.9m
+[rq1 final_token] 120/600 (20%)  73s elapsed  1.7/s  ETA 4.7m
+[rq1 final_token] 150/600 (25%)  90s elapsed  1.7/s  ETA 4.4m
+[rq1 final_token] 180/600 (30%)  1.8m elapsed  1.7/s  ETA 4.1m
+[rq1 final_token] 210/600 (35%)  2.1m elapsed  1.7/s  ETA 3.8m
+[rq1 final_token] 240/600 (40%)  2.3m elapsed  1.7/s  ETA 3.5m
+[rq1 final_token] 270/600 (45%)  2.7m elapsed  1.7/s  ETA 3.2m
+[rq1 final_token] 300/600 (50%)  2.9m elapsed  1.7/s  ETA 2.9m
+[rq1 final_token] 330/600 (55%)  3.2m elapsed  1.7/s  ETA 2.6m
+[rq1 final_token] 360/600 (60%)  3.5m elapsed  1.7/s  ETA 2.3m
+[rq1 final_token] 390/600 (65%)  3.8m elapsed  1.7/s  ETA 2.0m
+[rq1 final_token] 420/600 (70%)  4.1m elapsed  1.7/s  ETA 1.7m
+[rq1 final_token] 450/600 (75%)  4.4m elapsed  1.7/s  ETA 88s
+[rq1 final_token] 480/600 (80%)  4.7m elapsed  1.7/s  ETA 70s
+[rq1 final_token] 510/600 (85%)  5.0m elapsed  1.7/s  ETA 53s
+[rq1 final_token] 540/600 (90%)  5.3m elapsed  1.7/s  ETA 35s
+[rq1 final_token] 570/600 (95%)  5.6m elapsed  1.7/s  ETA 18s
+[rq1 final_token] 600/600 (100%)  5.9m elapsed  1.7/s
+[rq1 entity_token] 30/600 (5%)  17s elapsed  1.8/s  ETA 5.4m
+[rq1 entity_token] 60/600 (10%)  33s elapsed  1.8/s  ETA 5.0m
+[rq1 entity_token] 90/600 (15%)  50s elapsed  1.8/s  ETA 4.7m
+[rq1 entity_token] 120/600 (20%)  68s elapsed  1.8/s  ETA 4.5m
+[rq1 entity_token] 150/600 (25%)  86s elapsed  1.7/s  ETA 4.3m
+[rq1 entity_token] 180/600 (30%)  1.8m elapsed  1.7/s  ETA 4.2m
+[rq1 entity_token] 210/600 (35%)  2.1m elapsed  1.7/s  ETA 3.9m
+[rq1 entity_token] 240/600 (40%)  2.4m elapsed  1.7/s  ETA 3.6m
+[rq1 entity_token] 270/600 (45%)  2.7m elapsed  1.7/s  ETA 3.3m
+[rq1 entity_token] 300/600 (50%)  3.0m elapsed  1.7/s  ETA 3.0m
+[rq1 entity_token] 330/600 (55%)  3.3m elapsed  1.7/s  ETA 2.7m
+[rq1 entity_token] 360/600 (60%)  3.6m elapsed  1.6/s  ETA 2.4m
+[rq1 entity_token] 390/600 (65%)  3.9m elapsed  1.7/s  ETA 2.1m
+[rq1 entity_token] 420/600 (70%)  4.3m elapsed  1.6/s  ETA 1.8m
+[rq1 entity_token] 450/600 (75%)  4.6m elapsed  1.6/s  ETA 1.5m
+[rq1 entity_token] 480/600 (80%)  4.9m elapsed  1.6/s  ETA 74s
+[rq1 entity_token] 510/600 (85%)  5.3m elapsed  1.6/s  ETA 56s
+[rq1 entity_token] 540/600 (90%)  5.6m elapsed  1.6/s  ETA 37s
+[rq1 entity_token] 570/600 (95%)  5.9m elapsed  1.6/s  ETA 19s
+[rq1 entity_token] 600/600 (100%)  6.2m elapsed  1.6/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      18,
+      18
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 0,
+    "git_commit": "1b80e95413889abd5a7798e5a345eaa51675bda5",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.3225,
+        "control_accuracy": 0.4870833333333333,
+        "selectivity": -0.1645833333333333,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.305,
+          0.325,
+          0.3375
+        ],
+        "control_fold_accuracies": [
+          0.495,
+          0.47375,
+          0.4925
+        ],
+        "fold_spread": 0.03250000000000003,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.28374999999999995,
+        "control_accuracy": 0.48208333333333336,
+        "selectivity": -0.19833333333333342,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.31375,
+          0.28375,
+          0.25375
+        ],
+        "control_fold_accuracies": [
+          0.48375,
+          0.47625,
+          0.48625
+        ],
+        "fold_spread": 0.06,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.29625,
+        "control_accuracy": 0.5025000000000001,
+        "selectivity": -0.20625000000000004,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.3475,
+          0.29625,
+          0.245
+        ],
+        "control_fold_accuracies": [
+          0.5125,
+          0.4975,
+          0.4975
+        ],
+        "fold_spread": 0.10249999999999998,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.32208333333333333,
+        "control_accuracy": 0.49124999999999996,
+        "selectivity": -0.16916666666666663,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.3125,
+          0.31875,
+          0.335
+        ],
+        "control_fold_accuracies": [
+          0.5125,
+          0.4775,
+          0.48375
+        ],
+        "fold_spread": 0.02250000000000002,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.52375,
+        "control_accuracy": 0.47125,
+        "selectivity": 0.05250000000000005,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.55125,
+          0.515,
+          0.505
+        ],
+        "control_fold_accuracies": [
+          0.445,
+          0.37375,
+          0.595
+        ],
+        "fold_spread": 0.04625000000000001,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.5449999999999999,
+        "control_accuracy": 0.5879166666666668,
+        "selectivity": -0.042916666666666825,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.585,
+          0.4925,
+          0.5575
+        ],
+        "control_fold_accuracies": [
+          0.6125,
+          0.545,
+          0.60625
+        ],
+        "fold_spread": 0.09249999999999997,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.5004166666666666,
+        "control_accuracy": 0.5504166666666667,
+        "selectivity": -0.050000000000000044,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5,
+          0.5,
+          0.50125
+        ],
+        "control_fold_accuracies": [
+          0.62375,
+          0.51125,
+          0.51625
+        ],
+        "fold_spread": 0.0012499999999999734,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.5970833333333333,
+        "control_accuracy": 0.5666666666666667,
+        "selectivity": 0.030416666666666647,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.56875,
+          0.58375,
+          0.63875
+        ],
+        "control_fold_accuracies": [
+          0.37375,
+          0.79375,
+          0.5325
+        ],
+        "fold_spread": 0.07000000000000006,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_L18/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-L18                  exit=0    0h17m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_L18.log                                 [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-L18
+pushed — outputs are now off this machine.
+layer override: band=(44, 44) results=data/gemma3_12b/results_L44 figures=figures/gemma3_12b_L44
+generated 600 families
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/1065 [00:00<?, ?it/s]Loading weights:   0%|          | 1/1065 [00:00<04:01,  4.41it/s]Loading weights:   2%|▏         | 16/1065 [00:00<00:17, 60.40it/s]Loading weights:   3%|▎         | 29/1065 [00:00<00:13, 78.84it/s]Loading weights:   4%|▍         | 42/1065 [00:00<00:11, 92.88it/s]Loading weights:   5%|▌         | 55/1065 [00:00<00:10, 99.15it/s]Loading weights:   6%|▋         | 67/1065 [00:00<00:09, 101.06it/s]Loading weights:   8%|▊         | 81/1065 [00:00<00:09, 108.07it/s]Loading weights:   9%|▉         | 94/1065 [00:01<00:08, 110.78it/s]Loading weights:  10%|█         | 107/1065 [00:01<00:08, 111.10it/s]Loading weights:  11%|█▏        | 120/1065 [00:01<00:08, 114.54it/s]Loading weights:  12%|█▏        | 132/1065 [00:01<00:08, 115.75it/s]Loading weights:  14%|█▎        | 146/1065 [00:01<00:08, 114.19it/s]Loading weights:  15%|█▍        | 159/1065 [00:01<00:07, 115.10it/s]Loading weights:  16%|█▌        | 171/1065 [00:01<00:07, 116.11it/s]Loading weights:  17%|█▋        | 185/1065 [00:01<00:07, 122.10it/s]Loading weights:  19%|█▊        | 198/1065 [00:01<00:07, 121.57it/s]Loading weights:  20%|█▉        | 211/1065 [00:01<00:06, 123.78it/s]Loading weights:  21%|██        | 224/1065 [00:02<00:06, 123.16it/s]Loading weights:  22%|██▏       | 238/1065 [00:02<00:06, 120.82it/s]Loading weights:  24%|██▎       | 252/1065 [00:02<00:06, 117.71it/s]Loading weights:  25%|██▍       | 265/1065 [00:02<00:06, 118.11it/s]Loading weights:  26%|██▌       | 278/1065 [00:02<00:06, 119.81it/s]Loading weights:  27%|██▋       | 291/1065 [00:02<00:06, 121.55it/s]Loading weights:  29%|██▊       | 304/1065 [00:02<00:06, 122.94it/s]Loading weights:  30%|██▉       | 317/1065 [00:02<00:06, 123.46it/s]Loading weights:  31%|███       | 330/1065 [00:02<00:05, 123.11it/s]Loading weights:  32%|███▏      | 343/1065 [00:03<00:05, 123.63it/s]Loading weights:  33%|███▎      | 356/1065 [00:03<00:06, 110.29it/s]Loading weights:  35%|███▍      | 368/1065 [00:03<00:06, 110.38it/s]Loading weights:  36%|███▌      | 381/1065 [00:03<00:06, 108.02it/s]Loading weights:  37%|███▋      | 394/1065 [00:03<00:06, 106.61it/s]Loading weights:  38%|███▊      | 407/1065 [00:03<00:06, 104.86it/s]Loading weights:  39%|███▉      | 418/1065 [00:03<00:06, 105.77it/s]Loading weights:  41%|████      | 432/1065 [00:03<00:05, 109.63it/s]Loading weights:  42%|████▏     | 445/1065 [00:04<00:05, 114.62it/s]Loading weights:  43%|████▎     | 458/1065 [00:04<00:05, 114.84it/s]Loading weights:  44%|████▍     | 471/1065 [00:04<00:05, 114.77it/s]Loading weights:  45%|████▌     | 484/1065 [00:04<00:05, 112.41it/s]Loading weights:  47%|████▋     | 497/1065 [00:04<00:05, 104.71it/s]Loading weights:  48%|████▊     | 511/1065 [00:04<00:05, 105.53it/s]Loading weights:  49%|████▉     | 524/1065 [00:04<00:05, 105.96it/s]Loading weights:  50%|█████     | 537/1065 [00:04<00:04, 111.20it/s]Loading weights:  52%|█████▏    | 551/1065 [00:05<00:04, 111.85it/s]Loading weights:  53%|█████▎    | 568/1065 [00:05<00:03, 125.52it/s]Loading weights:  55%|█████▍    | 581/1065 [00:05<00:03, 122.89it/s]Loading weights:  56%|█████▌    | 596/1065 [00:05<00:03, 125.42it/s]Loading weights:  57%|█████▋    | 611/1065 [00:05<00:03, 130.44it/s]Loading weights:  59%|█████▊    | 625/1065 [00:05<00:03, 128.63it/s]Loading weights:  75%|███████▌  | 801/1065 [00:05<00:00, 580.51it/s]Loading weights:  94%|█████████▍| 1005/1065 [00:05<00:00, 994.26it/s]Loading weights: 100%|██████████| 1065/1065 [00:05<00:00, 184.44it/s]
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 928.08it/s]
+[rq1 final_token] 30/600 (5%)  19s elapsed  1.7/s  ETA 5.5m
+[rq1 final_token] 60/600 (10%)  38s elapsed  1.7/s  ETA 5.4m
+[rq1 final_token] 90/600 (15%)  58s elapsed  1.6/s  ETA 5.3m
+[rq1 final_token] 120/600 (20%)  76s elapsed  1.6/s  ETA 4.9m
+[rq1 final_token] 150/600 (25%)  1.6m elapsed  1.6/s  ETA 4.6m
+[rq1 final_token] 180/600 (30%)  1.9m elapsed  1.6/s  ETA 4.3m
+[rq1 final_token] 210/600 (35%)  2.2m elapsed  1.6/s  ETA 4.0m
+[rq1 final_token] 240/600 (40%)  2.5m elapsed  1.6/s  ETA 3.7m
+[rq1 final_token] 270/600 (45%)  2.8m elapsed  1.6/s  ETA 3.3m
+[rq1 final_token] 300/600 (50%)  3.0m elapsed  1.7/s  ETA 3.0m
+[rq1 final_token] 330/600 (55%)  3.3m elapsed  1.7/s  ETA 2.7m
+[rq1 final_token] 360/600 (60%)  3.7m elapsed  1.6/s  ETA 2.5m
+[rq1 final_token] 390/600 (65%)  4.1m elapsed  1.6/s  ETA 2.2m
+[rq1 final_token] 420/600 (70%)  4.4m elapsed  1.6/s  ETA 1.9m
+[rq1 final_token] 450/600 (75%)  4.7m elapsed  1.6/s  ETA 1.5m
+[rq1 final_token] 480/600 (80%)  5.0m elapsed  1.6/s  ETA 74s
+[rq1 final_token] 510/600 (85%)  5.2m elapsed  1.6/s  ETA 55s
+[rq1 final_token] 540/600 (90%)  5.5m elapsed  1.6/s  ETA 37s
+[rq1 final_token] 570/600 (95%)  5.8m elapsed  1.6/s  ETA 18s
+[rq1 final_token] 600/600 (100%)  6.1m elapsed  1.6/s
+[rq1 entity_token] 30/600 (5%)  19s elapsed  1.6/s  ETA 5.9m
+[rq1 entity_token] 60/600 (10%)  37s elapsed  1.6/s  ETA 5.5m
+[rq1 entity_token] 90/600 (15%)  55s elapsed  1.6/s  ETA 5.2m
+[rq1 entity_token] 120/600 (20%)  73s elapsed  1.6/s  ETA 4.9m
+[rq1 entity_token] 150/600 (25%)  1.5m elapsed  1.7/s  ETA 4.5m
+[rq1 entity_token] 180/600 (30%)  1.8m elapsed  1.7/s  ETA 4.2m
+[rq1 entity_token] 210/600 (35%)  2.1m elapsed  1.7/s  ETA 3.9m
+[rq1 entity_token] 240/600 (40%)  2.4m elapsed  1.7/s  ETA 3.6m
+[rq1 entity_token] 270/600 (45%)  2.7m elapsed  1.7/s  ETA 3.3m
+[rq1 entity_token] 300/600 (50%)  3.0m elapsed  1.7/s  ETA 3.0m
+[rq1 entity_token] 330/600 (55%)  3.3m elapsed  1.7/s  ETA 2.7m
+[rq1 entity_token] 360/600 (60%)  3.6m elapsed  1.7/s  ETA 2.4m
+[rq1 entity_token] 390/600 (65%)  3.9m elapsed  1.7/s  ETA 2.1m
+[rq1 entity_token] 420/600 (70%)  4.2m elapsed  1.7/s  ETA 1.8m
+[rq1 entity_token] 450/600 (75%)  4.5m elapsed  1.7/s  ETA 1.5m
+[rq1 entity_token] 480/600 (80%)  4.8m elapsed  1.7/s  ETA 72s
+[rq1 entity_token] 510/600 (85%)  5.1m elapsed  1.7/s  ETA 54s
+[rq1 entity_token] 540/600 (90%)  5.4m elapsed  1.7/s  ETA 36s
+[rq1 entity_token] 570/600 (95%)  5.7m elapsed  1.7/s  ETA 18s
+[rq1 entity_token] 600/600 (100%)  6.0m elapsed  1.7/s
+{
+  "provenance": {
+    "backend": "qwen_jlens",
+    "model_id": "google/gemma-3-12b-pt",
+    "lens_repo": "neuronpedia/jacobian-lens",
+    "lens_subpath": "gemma-3-12b/jlens/Salesforce-wikitext",
+    "layer_band": [
+      44,
+      44
+    ],
+    "jspace_k": 16,
+    "ablate_k": 10,
+    "dtype": "bfloat16",
+    "dummy_mode": null,
+    "config_model_mismatch": null,
+    "n_concept_pairs": 3,
+    "n_families": 600,
+    "seed": 0,
+    "git_commit": "2e6f82914791e10d4ce8aa9509c515ea088157a8",
+    "git_branch": "main",
+    "git_dirty": true
+  },
+  "sites": {
+    "final_token": {
+      "jspace": {
+        "accuracy": 0.32,
+        "control_accuracy": 0.5058333333333332,
+        "selectivity": -0.18583333333333324,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.3175,
+          0.3225,
+          0.32
+        ],
+        "control_fold_accuracies": [
+          0.48875,
+          0.53875,
+          0.49
+        ],
+        "fold_spread": 0.0050000000000000044,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "orthogonal": {
+        "accuracy": 0.25375,
+        "control_accuracy": 0.48500000000000004,
+        "selectivity": -0.23125000000000007,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.2925,
+          0.26625,
+          0.2025
+        ],
+        "control_fold_accuracies": [
+          0.48875,
+          0.48125,
+          0.485
+        ],
+        "fold_spread": 0.08999999999999997,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "residual": {
+        "accuracy": 0.25875,
+        "control_accuracy": 0.47875,
+        "selectivity": -0.22000000000000003,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.285,
+          0.2875,
+          0.20375
+        ],
+        "control_fold_accuracies": [
+          0.47875,
+          0.49375,
+          0.46375
+        ],
+        "fold_spread": 0.08374999999999999,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      },
+      "random_subspace": {
+        "accuracy": 0.32416666666666666,
+        "control_accuracy": 0.49958333333333327,
+        "selectivity": -0.1754166666666666,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.31375,
+          0.33125,
+          0.3275
+        ],
+        "control_fold_accuracies": [
+          0.50625,
+          0.485,
+          0.5075
+        ],
+        "fold_spread": 0.017500000000000016,
+        "inverting_folds": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ]
+      }
+    },
+    "entity_token": {
+      "jspace": {
+        "accuracy": 0.5533333333333333,
+        "control_accuracy": 0.44916666666666666,
+        "selectivity": 0.10416666666666669,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.5075,
+          0.53875,
+          0.61375
+        ],
+        "control_fold_accuracies": [
+          0.44875,
+          0.43,
+          0.46875
+        ],
+        "fold_spread": 0.10625000000000007,
+        "inverting_folds": []
+      },
+      "orthogonal": {
+        "accuracy": 0.71625,
+        "control_accuracy": 0.5183333333333333,
+        "selectivity": 0.19791666666666674,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.6975,
+          0.7325,
+          0.71875
+        ],
+        "control_fold_accuracies": [
+          0.655,
+          0.475,
+          0.425
+        ],
+        "fold_spread": 0.03500000000000003,
+        "inverting_folds": []
+      },
+      "residual": {
+        "accuracy": 0.6729166666666666,
+        "control_accuracy": 0.63,
+        "selectivity": 0.0429166666666666,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.6875,
+          0.62125,
+          0.71
+        ],
+        "control_fold_accuracies": [
+          0.785,
+          0.72375,
+          0.38125
+        ],
+        "fold_spread": 0.08875,
+        "inverting_folds": []
+      },
+      "random_subspace": {
+        "accuracy": 0.5929166666666666,
+        "control_accuracy": 0.5975,
+        "selectivity": -0.004583333333333384,
+        "n_examples": 2400,
+        "n_folds": 3,
+        "fold_ids": [
+          "doctor->nurse",
+          "driver->passenger",
+          "teacher->student"
+        ],
+        "fold_accuracies": [
+          0.58375,
+          0.58375,
+          0.61125
+        ],
+        "control_fold_accuracies": [
+          0.5725,
+          0.59875,
+          0.62125
+        ],
+        "fold_spread": 0.02749999999999997,
+        "inverting_folds": []
+      }
+    }
+  },
+  "inverting_folds_present": true,
+  "inverting_folds": {
+    "final_token|jspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|orthogonal": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|residual": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ],
+    "final_token|random_subspace": [
+      "doctor->nurse",
+      "driver->passenger",
+      "teacher->student"
+    ]
+  },
+  "figure": "figures/gemma3_12b_L44/rq1_selectivity.png",
+  "note": "decodability, not use; a linear null does not rule out multiplicative binding codes (proposal, Potential Limitations)"
+}
+
+[1;97;42m                                                                            [0m
+[1;97;42m    DONE    gemma-rq1-L44                  exit=0    0h22m           [0m
+[1;97;42m  log: runs/gemma3-12b-rq1/logs/rq1_L44.log                                 [0m
+[1;97;42m                                                                            [0m
+
+archiving paths from configs/gemma3_12b.yaml
+  data/gemma3_12b/results -> 1 file(s)
+  (absent, not yet produced: data/gemma3_12b/directions, figures/gemma3_12b, data/gemma3_12b/calibration.json)
+
+committed 1 file(s) under runs/gemma-rq1-L44
+pushed — outputs are now off this machine.

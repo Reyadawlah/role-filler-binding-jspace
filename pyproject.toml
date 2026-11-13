@@ -1,0 +1,57 @@
+[project]
+name = "jspace-binding"
+version = "0.1.0"
+description = "Is the J-space global workspace a privileged locus for role-filler binding?"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["interpretability", "global-workspace", "jacobian-lens", "role-filler-binding"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Heavy deps only needed for the real Qwen + J-lens backend; the full pipeline
+# runs end-to-end on the DummyModel backend without these.
+model = [
+    "torch>=2.3",
+    "transformers>=4.44",
+    "accelerate>=0.33",
+    "safetensors>=0.4",
+    "huggingface_hub>=0.24",
+    # 4-bit loading (model.load_in_4bit, the Kaggle 2x T4 path) additionally
+    # needs bitsandbytes, which only installs on CUDA boxes — add it there.
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[project.urls]
+Repository = "https://github.com/Reyadawlah/role-filler-binding-jspace"
+Results = "https://github.com/Reyadawlah/role-filler-binding-jspace/blob/main/RESULTS.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jspace_binding"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

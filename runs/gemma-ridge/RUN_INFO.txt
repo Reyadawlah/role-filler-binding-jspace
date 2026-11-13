@@ -1,0 +1,7 @@
+label: gemma-ridge
+commit: 0ed483bd42c508089e2387b7c4b31d1cc6738710
+dirty: True
+config: configs/gemma3_12b.yaml
+sources: ['data/gemma3_12b/results', 'data/gemma3_12b/directions', 'figures/gemma3_12b', 'data/gemma3_12b/calibration.json']
+note: Gemma-3-12B ridge-penalty sweep
+files: 5

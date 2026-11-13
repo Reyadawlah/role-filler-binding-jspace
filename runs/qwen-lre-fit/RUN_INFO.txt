@@ -1,0 +1,7 @@
+label: qwen-lre-fit
+commit: 65b955fc4f40b011ad15bba9cc35c20a09c1e896
+dirty: True
+config: configs/default_lre.yaml
+sources: ['data/results_lre', 'data/directions_lre', 'figures/qwen_lre', 'data/calibration_lre.json']
+note: Qwen3.6-27B LRE gradient directions (refit; original never archived)
+files: 10

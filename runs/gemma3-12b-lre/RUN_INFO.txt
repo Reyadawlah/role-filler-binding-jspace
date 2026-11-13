@@ -1,0 +1,30 @@
+label: gemma3-12b-lre
+commit: 7e60e5d009002b1ad7d4b97406627b3816dfeaaa
+note: LRE gradient directions (stability 0.995+); push calibrated c=256 (linearity prediction c~125 vs observed 0.49 shift at 128); diagnose +0.94/-0.99/-0.01; primary verdict significant_but_tiny — steering mirror +/-0.22-0.25 real, binding score -0.014 d=-0.20 below pre-registered 0.5, wrong-signed for binding damage; alpha uncalibrated but in-run strength check passed
+
+VERDICT RE-DERIVED. This run predates both 6dc4258 and the push-arm gate.
+Re-scored under current code with scripts/reanalyze_primary.py (no GPU; the
+archived trials.jsonl is the input):
+
+    outcome          significant_but_tiny   (unchanged)
+    gated on         role_push, the arm the binding score is built from
+    push arm         displacement 0.593 vs the 0.5 floor; strongest control
+                     shuffled_label_direction 0.433, paired CI [0.153, 0.166]
+    swap arm         counterpart +0.00477 vs the 0.05 floor -- STILL FAILS,
+                     now reported rather than gating
+
+No measurement moved at any point: pooled_d is -0.1954804702346339 here and
+in the original log.
+
+Under 6dc4258 alone this run read uninterpretable_strength_failure, because
+_verdict gated every outcome on IDENTITY_SWAP's alpha -- a control for the
+separate, retracted addressability claim, which failed on both models tested.
+The binding score is a ROLE_PUSH quantity, so the gate now keys on the push
+arm's readout displacement (the same criterion, and the same 0.5 threshold,
+that experiments.calibrate applies).
+
+READ THE MARGIN BEFORE CITING IT. 0.593 against 0.433 for a direction fitted
+on PERMUTED labels is a ratio of 1.37. Most of the displacement is what any
+fitted direction of that norm achieves; only the excess is role-specific.
+Quoting 0.593 against random_direction's 0.042 would imply 14x and would be
+misleading. The steering result is real and it is narrow.

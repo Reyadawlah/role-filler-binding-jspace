@@ -1,0 +1,5 @@
+label: calibrate-exit3
+commit: 8ff909770d2497a30827fe4d3717fbe289f54dff
+dirty: True
+note: intervention-strength failure at entity_token; non-monotonic across 0.5-8.0
+files: 12

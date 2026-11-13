@@ -1,0 +1,7 @@
+label: gemma-rq1-s123
+commit: c95d950a6adbb14723328693c527fd95fc47c0c6
+dirty: True
+config: configs/gemma3_12b.yaml
+sources: ['data/gemma3_12b/results', 'data/gemma3_12b/directions', 'figures/gemma3_12b', 'data/gemma3_12b/calibration.json']
+note: Gemma-3-12B RQ1 seed 123 at L36 (table #12)
+files: 1

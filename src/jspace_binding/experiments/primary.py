@@ -1,0 +1,714 @@
+"""Primary experiment: the full condition sweep and its analysis.
+
+Probe assignment per edit type: direction pushes (ROLE_PUSH and its three
+controls) use the ROLE probe in both signs; NO_EDIT uses ROLE (the DiD
+baseline) plus NEUTRAL (the strength check's reference); IDENTITY_SWAP uses
+NEUTRAL only and never enters the binding score.
+
+analyze() turns the trial list into per-(construction, pair) binding scores with
+bootstrap CIs, Holm-corrected permutation p-values, Cohen's d, the control null
+band, the per-sign gap-change breakdown, both strength checks, and the figures.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from dataclasses import replace
+from pathlib import Path
+
+import numpy as np
+
+from jspace_binding.analysis import stats
+from jspace_binding.analysis.binding_score import (
+    AGENT_PATIENT_CONSTRUCTIONS,
+    CONTROL_EDIT_TYPES,
+    ScoreTable,
+    _cell_logits,
+    collect_scores,
+)
+from jspace_binding.analysis.plots import forest_plot, per_condition_plot
+from jspace_binding.config import Config
+from jspace_binding.experiments.progress import track
+from jspace_binding.interventions.edits import plan_edit
+from jspace_binding.model.base import WorkspaceModel
+from jspace_binding.types import (
+    DIRECTION_PUSH_EDIT_TYPES,
+    ConceptPair,
+    EditType,
+    InjectionSite,
+    ItemFamily,
+    Position,
+    ProbeKind,
+    PushSign,
+    Role,
+    TrialResult,
+)
+
+
+def validate_config(config: Config) -> None:
+    """Reject configs the primary statistic cannot support, before any model
+    call, so a bad sweep fails in milliseconds rather than after GPU hours.
+
+    RQ2 ablation edit types have their own runner, and the crossover score is
+    defined over BOTH push signs — a single-sign config would otherwise only
+    crash in analyze(), after the sweep had spent its compute.
+    """
+    rq2_only = [
+        e.value
+        for e in config.experiment.edit_types
+        if e in (EditType.ABLATE_JSPACE, EditType.ABLATE_RANDOM_SUBSPACE)
+    ]
+    if rq2_only:
+        raise ValueError(
+            f"edit_types {rq2_only} are RQ2 ablations, not primary-sweep conditions; "
+            "run scripts/run_rq2.py instead"
+        )
+    has_push = any(e in DIRECTION_PUSH_EDIT_TYPES for e in config.experiment.edit_types)
+    if has_push and set(config.experiment.push_signs) != set(PushSign):
+        got = [s.value for s in config.experiment.push_signs]
+        raise ValueError(
+            f"the crossover binding score needs both push signs, got {got}; "
+            "set experiment.push_signs: [toward_agent, toward_patient]"
+        )
+
+
+def resolve_calibrated_strengths(
+    config: Config,
+    site: InjectionSite | None = None,
+    *,
+    dry_run: bool = False,
+) -> Config:
+    """Fill ``model.alpha`` / ``model.push_coefficient`` from the calibration
+    audit record when the config leaves them open.
+
+    This removes the manual "copy the two printed values into the YAML" step
+    between ``scripts/calibrate.py`` and ``scripts/run_primary.py`` that the
+    runbook warned would *silently* run the primary sweep with a pure swap and
+    no push scaling if forgotten. Precedence:
+
+    1. An explicit value in the config always wins — pasting into the YAML still
+       works, and a calibration record that disagrees only warns.
+    2. Otherwise the value is read from ``config.paths.calibration``, but only
+       when that record was calibrated at the site being run. A push coefficient
+       is in absolute residual-norm units and the fitted directions differ in
+       norm across sites, so a value calibrated at another site is not
+       applied silently.
+    3. If a push experiment still has no ``push_coefficient`` afterwards, the
+       run is refused (exit 2) instead of sweeping with no push scaling.
+
+    ``dry_run`` bypasses all of this: the DummyModel has no strength dial.
+    Returns a config with the resolved values (the input unchanged when nothing
+    needed filling).
+    """
+    if dry_run:
+        return config
+
+    model = config.model
+    push = model.push_coefficient
+    alpha = model.alpha
+    target = site.value if site is not None else None
+    cal_path = Path(config.paths.calibration)
+
+    record = None
+    if cal_path.exists():
+        try:
+            record = json.loads(cal_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            print(f"ignoring unreadable calibration {cal_path}: {exc}", file=sys.stderr)
+
+    if isinstance(record, dict):
+        cal_site = record.get("site")
+
+        def _calibrated(section: str) -> float | None:
+            entry = record.get(section)
+            return entry.get("value") if isinstance(entry, dict) else None
+
+        if target is not None and cal_site is not None and cal_site != target:
+            # Never auto-apply a record fitted at a different injection site.
+            if push is None:
+                print(
+                    f"calibration {cal_path} was fit at site={cal_site} but the "
+                    f"primary sweep targets site={target}; re-run "
+                    f"scripts/calibrate.py --site {target} — a push coefficient "
+                    "does not transfer across sites.",
+                    file=sys.stderr,
+                )
+                sys.exit(2)
+            print(
+                f"warning: calibration {cal_path} site={cal_site} != run "
+                f"site={target}; using the config's push_coefficient={push} / "
+                f"alpha={alpha}, not the record.",
+                file=sys.stderr,
+            )
+        else:
+            if push is None:
+                push = _calibrated("push_coefficient")
+                if push is not None:
+                    print(
+                        f"loaded push_coefficient={push} from {cal_path} "
+                        f"(calibrated at site={cal_site})",
+                        file=sys.stderr,
+                    )
+            if alpha is None:
+                cal_alpha = _calibrated("alpha")
+                if cal_alpha is not None:
+                    alpha = cal_alpha
+                    print(
+                        f"loaded alpha={alpha} from {cal_path} "
+                        f"(calibrated at site={cal_site})",
+                        file=sys.stderr,
+                    )
+
+    has_push = any(e in DIRECTION_PUSH_EDIT_TYPES for e in config.experiment.edit_types)
+    if has_push and push is None:
+        where = f"in {cal_path}" if record is not None else f"({cal_path} not found)"
+        print(
+            "model.push_coefficient is unset and no calibrated value is available "
+            f"{where}. Run scripts/calibrate.py --config <cfg> --site "
+            f"{target or '<site>'} first, or set model.push_coefficient in the "
+            "config. Refusing to run the primary sweep with a pure swap and no "
+            "push scaling (see RUNBOOK).",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+
+    if push == model.push_coefficient and alpha == model.alpha:
+        return config
+    return replace(config, model=replace(model, push_coefficient=push, alpha=alpha))
+
+
+def run_primary(
+    config: Config,
+    model: WorkspaceModel,
+    families: list[ItemFamily],
+    site: InjectionSite | None = None,
+) -> list[TrialResult]:
+    """Sweep family x (role x position) cell x (edit type x sign) x injection site.
+
+    `site` restricts the sweep to one injection site; None sweeps every
+    configured site. Each site is a full sweep, so naming one halves GPU cost
+    and analyze() reads a single site anyway. Trials are written to
+    config.paths.results / "trials.jsonl" and returned in sweep order.
+    """
+    validate_config(config)
+    sites = (site,) if site is not None else tuple(config.experiment.injection_sites)
+    trials: list[TrialResult] = []
+    for family_index, family in enumerate(
+        track(families, "primary", total=len(families))
+    ):
+        if family.answer_set is None:
+            raise ValueError(f"family {family.family_id!r} has no answer_set")
+        for edit_type in config.experiment.edit_types:
+            for sign, probe_kinds in _conditions(config, edit_type):
+                edit = plan_edit(
+                    family,
+                    edit_type,
+                    sign=sign,
+                    non_participant_candidates=config.stimuli.non_participant_entities,
+                    alpha=config.model.alpha,
+                    coefficient=config.model.push_coefficient,
+                    # Offset per family so RANDOM_DIRECTION draws a fresh
+                    # vector per family; both signs push the same one.
+                    seed=config.experiment.seed + family_index,
+                )
+                for role in Role:
+                    for position in Position:
+                        stimulus = family.cell(role, position)
+                        for trial_site in sites:
+                            for probe_kind in probe_kinds:
+                                probe = _probe_text(family, probe_kind)
+                                if not probe:
+                                    # RECIPIENT is dative-only; the other three
+                                    # constructions carry no recipient probe.
+                                    continue
+                                answer_probs = model.answer_distribution(
+                                    stimulus.sentence,
+                                    probe,
+                                    edit,
+                                    trial_site,
+                                    family.answer_set.tokens,
+                                )
+                                trials.append(
+                                    TrialResult(
+                                        family_id=family.family_id,
+                                        pair_id=family.concept_pair.pair_id,
+                                        construction=family.construction,
+                                        role=role,
+                                        position=position,
+                                        edit_type=edit_type,
+                                        probe_kind=probe_kind,
+                                        injection_site=trial_site,
+                                        answer_probs={
+                                            token: float(p)
+                                            for token, p in answer_probs.items()
+                                        },
+                                        push_sign=sign,
+                                    )
+                                )
+    _write_trials(trials, Path(config.paths.results) / "trials.jsonl")
+    return trials
+
+
+def _probe_text(family: ItemFamily, probe_kind: ProbeKind) -> str:
+    """The probe string for one kind, or "" when this family has none."""
+    if probe_kind is ProbeKind.ROLE:
+        return family.role_probe
+    if probe_kind is ProbeKind.NEUTRAL:
+        return family.neutral_probe
+    if probe_kind is ProbeKind.RECIPIENT:
+        return family.recipient_probe
+    raise ValueError(f"Unhandled probe kind in sweep: {probe_kind!r}")
+
+
+def _conditions(
+    config: Config, edit_type: EditType
+) -> list[tuple[PushSign | None, tuple[ProbeKind, ...]]]:
+    """(sign, probe kinds) conditions for one edit type.
+
+    RECIPIENT rides along with ROLE on the pushes and the no-edit baseline so
+    the dative gets a complete 12-cell score (and its own null band) from the
+    recipient side too. Non-dative families skip it in the sweep loop.
+    """
+    if edit_type in DIRECTION_PUSH_EDIT_TYPES:
+        return [
+            (sign, (ProbeKind.ROLE, ProbeKind.RECIPIENT))
+            for sign in config.experiment.push_signs
+        ]
+    if edit_type is EditType.NO_EDIT:
+        return [(None, (ProbeKind.ROLE, ProbeKind.NEUTRAL, ProbeKind.RECIPIENT))]
+    if edit_type is EditType.IDENTITY_SWAP:
+        return [(None, (ProbeKind.NEUTRAL,))]
+    raise ValueError(f"Unhandled edit type in sweep: {edit_type!r}")
+
+
+def analyze(
+    config: Config, trials: list[TrialResult], site: InjectionSite | None = None
+) -> dict[str, object]:
+    """Score, test, and plot the primary analysis at one injection site.
+
+    Defaults to FINAL_TOKEN. Only one site is ever scored, so pass `site` to
+    pick which. Permutation p-values are Holm-corrected across the
+    (construction x pair) groups; the pooled row is the omnibus and stays
+    uncorrected. The summary is json.dumps-able as returned.
+    """
+    if not trials:
+        raise ValueError("analyze: no trials to analyze")
+    if site is None:
+        site = InjectionSite.FINAL_TOKEN
+    table = collect_scores(trials, site)
+    if not table.real:
+        raise ValueError(
+            f"analyze: no ROLE_PUSH ROLE-probe trials at the {site.value} site; "
+            "the sweep did not cover it (see run_primary --site)"
+        )
+    band_lo, band_hi = stats.null_band(table.null_band, ci_level=config.analysis.ci_level)
+
+    group_stats = {key: _stats_block(scores, config) for key, scores in table.real.items()}
+    significant = stats.holm_bonferroni(
+        {key: block["p_perm"] for key, block in group_stats.items()},
+        alpha=config.analysis.alpha_level,
+    )
+    pooled = _stats_block([score for scores in table.real.values() for score in scores], config)
+
+    # Per-construction blocks (pooled over pairs): the positive-result
+    # criterion quantifies over constructions, not (construction x pair)
+    # slices (proposal, Ideal Results #3). Holm-corrected within this family.
+    by_construction: dict[str, list[float]] = {}
+    for (construction, _), scores in table.real.items():
+        by_construction.setdefault(construction, []).extend(scores)
+    construction_stats = {
+        construction: _stats_block(scores, config)
+        for construction, scores in by_construction.items()
+    }
+    construction_significant = stats.holm_bonferroni(
+        {c: block["p_perm"] for c, block in construction_stats.items()},
+        alpha=config.analysis.alpha_level,
+    )
+    neutral_check = _neutral_strength_check(trials, site)
+    push_check = _push_strength_check(trials, site, config)
+    verdict = _verdict(
+        config,
+        pooled,
+        construction_stats,
+        construction_significant,
+        table,
+        (band_lo, band_hi),
+        push_check,
+        neutral_check,
+    )
+
+    figures_dir = Path(config.paths.figures)
+    forest_path = figures_dir / "forest.png"
+    per_condition_path = figures_dir / "per_condition.png"
+    forest_plot(table, group_stats, (band_lo, band_hi), forest_path)
+    # The per-condition figure reads one pair's entity token; the sweep's first
+    # trial makes the choice deterministic and guaranteed present in the data.
+    example_entity = ConceptPair.entity_of(trials[0].pair_id)
+    per_condition_plot(trials, example_entity, per_condition_path, site=site)
+
+    return {
+        "site": site.value,
+        "ci_level": float(config.analysis.ci_level),
+        "n_trials": len(trials),
+        "null_band": [float(band_lo), float(band_hi)],
+        "n_null_scores": len(table.null_band),
+        "pooled": pooled,
+        "gap_change_by_sign": {
+            sign: {"n": len(values), "mean": float(np.mean(values))}
+            for sign, values in table.gap_changes.items()
+        },
+        "push_strength_check": push_check,
+        "neutral_strength_check": neutral_check,
+        "constructions": {
+            construction: {
+                **construction_stats[construction],
+                "significant_holm": bool(construction_significant[construction]),
+                "agent_patient_family": construction in AGENT_PATIENT_CONSTRUCTIONS,
+            }
+            for construction in construction_stats
+        },
+        "groups": {
+            f"{construction}|{pair_id}": {
+                "construction": construction,
+                "pair_id": pair_id,
+                **group_stats[(construction, pair_id)],
+                "significant_holm": bool(significant[(construction, pair_id)]),
+            }
+            for construction, pair_id in group_stats
+        },
+        "verdict": verdict,
+        "figures": {"forest": str(forest_path), "per_condition": str(per_condition_path)},
+    }
+
+
+# P(counterpart) must rise by at least this much for the swap to count as having
+# landed. Deliberately identical to calibrate_identity_alpha's `min_prob_shift`:
+# calibration and the in-run check are the same question asked twice and must
+# agree. A sign-only version of this check passed on a +0.0012 shift while
+# calibration reported a failure on the same model (RESULTS.md §7).
+_MIN_COUNTERPART_SHIFT = 0.05
+
+
+def _neutral_strength_check(trials: list[TrialResult], site: InjectionSite) -> dict[str, object]:
+    """Intervention-strength control for the IDENTITY_SWAP arm.
+
+    Compares P(counterpart) and P(entity) at the NEUTRAL probe under
+    IDENTITY_SWAP against NO_EDIT. Passing requires the counterpart to rise by
+    a MAGNITUDE, not merely to rise: a swap nudging it from 0.3% to 0.4% has
+    installed nothing, and licensing a null on that asserts exactly what the
+    check exists to rule out.
+    """
+    sums: dict[tuple[EditType, str], list[float]] = {}
+    for t in trials:
+        if t.probe_kind is not ProbeKind.NEUTRAL or t.injection_site is not site:
+            continue
+        if t.edit_type not in (EditType.IDENTITY_SWAP, EditType.NO_EDIT):
+            continue
+        entity, counterpart = ConceptPair.split_pair_id(t.pair_id)
+        missing = [tok for tok in (entity, counterpart) if tok not in t.answer_probs]
+        if missing:
+            raise ValueError(
+                f"neutral strength check: answer tokens {missing} missing from "
+                f"answer_probs of a {t.edit_type.value} trial in family {t.family_id!r}"
+            )
+        sums.setdefault((t.edit_type, "entity"), []).append(t.answer_probs[entity])
+        sums.setdefault((t.edit_type, "counterpart"), []).append(t.answer_probs[counterpart])
+
+    needed = [(e, tok) for e in (EditType.IDENTITY_SWAP, EditType.NO_EDIT)
+              for tok in ("entity", "counterpart")]
+    if any(key not in sums for key in needed):
+        return {
+            "available": False,
+            "note": "needs identity_swap and no_edit NEUTRAL-probe trials at this site",
+        }
+    mean = {key: float(np.mean(values)) for key, values in sums.items()}
+    counterpart_shift = (
+        mean[(EditType.IDENTITY_SWAP, "counterpart")] - mean[(EditType.NO_EDIT, "counterpart")]
+    )
+    entity_shift = mean[(EditType.IDENTITY_SWAP, "entity")] - mean[(EditType.NO_EDIT, "entity")]
+    return {
+        "available": True,
+        "p_counterpart_no_edit": mean[(EditType.NO_EDIT, "counterpart")],
+        "p_counterpart_swap": mean[(EditType.IDENTITY_SWAP, "counterpart")],
+        "p_entity_no_edit": mean[(EditType.NO_EDIT, "entity")],
+        "p_entity_swap": mean[(EditType.IDENTITY_SWAP, "entity")],
+        "counterpart_shift": counterpart_shift,
+        "entity_shift": entity_shift,
+        "min_counterpart_shift": _MIN_COUNTERPART_SHIFT,
+        "passes": bool(
+            counterpart_shift >= _MIN_COUNTERPART_SHIFT and entity_shift < 0.0
+        ),
+    }
+
+
+# Minimum mean |logit| displacement of the readout under ROLE_PUSH for the arm
+# to count as live. Matches calibrate's `min_logit_shift` for the same reason
+# _MIN_COUNTERPART_SHIFT matches calibrate_identity_alpha. The case it must
+# exclude is Qwen's ~0.01 log-odds non-monotonic push (RESULTS.md §7).
+_MIN_PUSH_DISPLACEMENT = 0.5
+
+
+def _readout_displacement(
+    trials: list[TrialResult], entity_token: str, treatment: EditType
+) -> float:
+    """Mean |logit P(entity) under `treatment` - under NO_EDIT| over all cells.
+
+    A LEVEL statistic, not a gap contrast, and that is load-bearing. The two
+    signed gap changes are computed against the same natural gap, so a push
+    with a uniform effect across roles cancels entirely — which is exactly what
+    a bag workspace does, making the contrast identically zero in BOTH dummy
+    modes. Displacement is instead large whenever the push moves the readout at
+    all, so a null binding result cannot fail its own strength check.
+    """
+    cells = _cell_logits(trials, entity_token, treatment, ProbeKind.ROLE)
+    baseline = {
+        (role, pos): cells[(role, pos, EditType.NO_EDIT, None)]
+        for role in Role
+        for pos in Position
+    }
+    shifts = [
+        abs(value - baseline[(role, pos)])
+        for (role, pos, edit, _sign), value in cells.items()
+        if edit is treatment
+    ]
+    return float(np.mean(shifts)) if shifts else 0.0
+
+
+def _push_strength_check(
+    trials: list[TrialResult], site: InjectionSite, config: Config
+) -> dict[str, object]:
+    """Intervention-strength control for the arm the binding score is built on.
+
+    The binding score is a ROLE_PUSH quantity, so gating it on the
+    IDENTITY_SWAP check would conflate two independent claims and make every
+    push null uninterpretable by construction. Passing requires both an
+    absolute displacement floor (_MIN_PUSH_DISPLACEMENT — "greater than a
+    control" is satisfiable by an arbitrarily tiny effect given enough
+    families) and a bootstrap CI against the strongest control edit that
+    excludes zero. Paired per family, so both describe the same families.
+    """
+    by_family: dict[str, list[TrialResult]] = {}
+    for t in trials:
+        if t.probe_kind is ProbeKind.ROLE and t.injection_site is site:
+            by_family.setdefault(t.family_id, []).append(t)
+
+    role: list[float] = []
+    controls: dict[str, list[float]] = {}
+    for family_trials in by_family.values():
+        edits = {t.edit_type for t in family_trials}
+        if EditType.ROLE_PUSH not in edits:
+            continue
+        entity = ConceptPair.entity_of(family_trials[0].pair_id)
+        role.append(_readout_displacement(family_trials, entity, EditType.ROLE_PUSH))
+        for control in CONTROL_EDIT_TYPES:
+            if control in edits:
+                controls.setdefault(control.value, []).append(
+                    _readout_displacement(family_trials, entity, control)
+                )
+
+    if not role:
+        return {
+            "available": False,
+            "note": f"no ROLE_PUSH ROLE-probe trials at {site.value}",
+        }
+
+    role_mean = float(np.mean(role))
+    control_means = {edit: float(np.mean(values)) for edit, values in controls.items()}
+    # Most conservative comparison available. Which control that is varies by
+    # model, so it must not be hard-coded.
+    strongest = max(control_means, key=lambda e: control_means[e]) if control_means else None
+
+    ci_lo = ci_hi = None
+    beats_control = False
+    if strongest is not None and len(controls[strongest]) == len(role):
+        paired = [r - c for r, c in zip(role, controls[strongest], strict=True)]
+        ci_lo, ci_hi = stats.bootstrap_ci(
+            paired,
+            n_resamples=config.analysis.n_bootstrap,
+            ci_level=config.analysis.ci_level,
+            seed=config.experiment.seed,
+        )
+        beats_control = bool(ci_lo > 0.0)
+
+    clears_floor = role_mean >= _MIN_PUSH_DISPLACEMENT
+    return {
+        "available": True,
+        "role_push_displacement": role_mean,
+        "control_displacement": control_means,
+        "strongest_control": strongest,
+        "vs_control_ci": [ci_lo, ci_hi] if ci_lo is not None else None,
+        "min_push_displacement": _MIN_PUSH_DISPLACEMENT,
+        "clears_floor": bool(clears_floor),
+        "beats_strongest_control": beats_control,
+        "passes": bool(clears_floor and beats_control),
+    }
+
+
+_D_MEANINGFUL = 0.5  # a-priori effect-size threshold (proposal, §6)
+_D_CI_TIGHT = 1.0  # max CI width on d for a null to count as "clean" not "underpowered"
+
+
+def _stats_block(scores: list[float], config: Config) -> dict[str, float | int]:
+    """Mean, bootstrap CI, permutation p, and effect size (with its own
+    bootstrap CI, per proposal §6) for one score list."""
+    ci_lo, ci_hi = stats.bootstrap_ci(
+        scores,
+        n_resamples=config.analysis.n_bootstrap,
+        ci_level=config.analysis.ci_level,
+        seed=config.experiment.seed,
+    )
+    p_perm = stats.permutation_pvalue(
+        scores, n_permutations=config.analysis.n_permutation, seed=config.experiment.seed
+    )
+    d_ci_lo, d_ci_hi = stats.cohens_d_ci(
+        scores,
+        n_resamples=config.analysis.n_bootstrap,
+        ci_level=config.analysis.ci_level,
+        seed=config.experiment.seed,
+    )
+    return {
+        "n": len(scores),
+        "mean": float(np.mean(scores)),
+        "ci_lo": float(ci_lo),
+        "ci_hi": float(ci_hi),
+        "p_perm": float(p_perm),
+        "cohens_d": float(stats.cohens_d(scores)),
+        "cohens_d_ci_lo": float(d_ci_lo),
+        "cohens_d_ci_hi": float(d_ci_hi),
+    }
+
+
+def _verdict(
+    config: Config,
+    pooled: dict[str, float | int],
+    construction_stats: dict[str, dict[str, float | int]],
+    construction_significant: dict[str, bool],
+    table: ScoreTable,
+    band: tuple[float, float],
+    push_check: dict[str, object],
+    neutral_check: dict[str, object],
+) -> dict[str, object]:
+    """Classify the outcome.
+
+    - uninterpretable_strength_failure: the ROLE_PUSH arm did not move the
+      readout, so no binding conclusion is licensed either way.
+    - indistinguishable_from_controls: pooled-significant, but the pooled mean
+      lies INSIDE the control null band. Significance and effect size measure
+      how CONSISTENTLY the push moves the score, not whether the movement has
+      anything to do with role structure, so this is checked before effect
+      size — "how big" only means something once "distinguishable from
+      nothing" is settled.
+    - positive_binding: pooled significant, d >= 0.5, above the null band,
+      holding in >= 2 of the 3 agent/patient constructions, random control
+      inside the band.
+    - significant_but_tiny: clears the band but with d < 0.5.
+    - suggestive_not_conclusive: pooled-significant, per-construction criterion
+      unmet.
+    - clean_negative: not significant with a tight CI on d — evidence FOR the
+      bag-of-concepts answer.
+    - inconclusive_underpowered: not significant with a wide CI on d.
+    """
+    # Gate on the arm under test. IDENTITY_SWAP is reported but gates the
+    # addressability claim only; letting it gate here made every push result
+    # uninterpretable by construction, including cleanly calibrated ones.
+    strength_passes = bool(push_check.get("available")) and bool(push_check.get("passes"))
+    band_lo, band_hi = band
+    random_scores = table.null_by_edit.get("random_direction", [])
+    random_mean = float(np.mean(random_scores)) if random_scores else None
+    random_in_band = bool(
+        random_scores and band_lo <= random_mean <= band_hi  # type: ignore[operator]
+    )
+    meaningful = [
+        construction
+        for construction in AGENT_PATIENT_CONSTRUCTIONS
+        if construction in construction_stats
+        and construction_significant[construction]
+        and construction_stats[construction]["cohens_d"] >= _D_MEANINGFUL
+    ]
+    pooled_significant = pooled["p_perm"] < config.analysis.alpha_level
+    d_ci_width = pooled["cohens_d_ci_hi"] - pooled["cohens_d_ci_lo"]
+
+    # A real effect sits ABOVE the band; anything inside it is what a
+    # strength-matched control produces.
+    pooled_mean = float(pooled["mean"])
+    clears_null_band = not (band_lo <= pooled_mean <= band_hi)
+    strongest_control = (
+        min(table.null_by_edit, key=lambda e: float(np.mean(table.null_by_edit[e])))
+        if table.null_by_edit
+        else None
+    )
+    control_ratio = None
+    if strongest_control is not None:
+        strongest_mean = float(np.mean(table.null_by_edit[strongest_control]))
+        if abs(strongest_mean) > 1e-12:
+            control_ratio = pooled_mean / strongest_mean
+
+    if not strength_passes:
+        outcome = "uninterpretable_strength_failure"
+    elif pooled_significant and not clears_null_band:
+        # Ordered BEFORE the effect-size branches on purpose: p and d both
+        # answer "how reliably", and neither answers "vs what".
+        outcome = "indistinguishable_from_controls"
+    elif (
+        pooled_significant
+        and pooled["cohens_d"] >= _D_MEANINGFUL
+        and pooled_mean > band_hi
+        and len(meaningful) >= 2
+        and random_in_band
+    ):
+        outcome = "positive_binding"
+    elif pooled_significant and pooled["cohens_d"] < _D_MEANINGFUL:
+        outcome = "significant_but_tiny"
+    elif pooled_significant:
+        outcome = "suggestive_not_conclusive"
+    elif d_ci_width <= _D_CI_TIGHT:
+        outcome = "clean_negative"
+    else:
+        outcome = "inconclusive_underpowered"
+
+    return {
+        "outcome": outcome,
+        "strength_check_passes": strength_passes,
+        "strength_gated_on": "role_push",
+        # Reported, NOT gating: the addressability control. Its failure means
+        # the IDENTITY_SWAP claim is unsupported, not that the push result is.
+        "identity_swap_check_passes": bool(neutral_check.get("available"))
+        and bool(neutral_check.get("passes")),
+        "pooled_significant": bool(pooled_significant),
+        # The comparison the outcome now turns on, reported so a reader never
+        # has to recompute it from control_means to know what the label means.
+        "pooled_mean": pooled_mean,
+        "null_band": [band_lo, band_hi],
+        "clears_null_band": bool(clears_null_band),
+        "strongest_control": strongest_control,
+        "vs_strongest_control_ratio": control_ratio,
+        "pooled_d": pooled["cohens_d"],
+        "pooled_d_ci": [pooled["cohens_d_ci_lo"], pooled["cohens_d_ci_hi"]],
+        "d_threshold": _D_MEANINGFUL,
+        "meaningful_constructions": meaningful,
+        "random_direction_mean": random_mean,
+        "random_direction_in_band": random_in_band,
+        "control_means": {
+            edit: float(np.mean(scores)) for edit, scores in table.null_by_edit.items()
+        },
+    }
+
+
+def _write_trials(trials: list[TrialResult], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        for t in trials:
+            record = {
+                "family_id": t.family_id,
+                "pair_id": t.pair_id,
+                "construction": t.construction.value,
+                "role": t.role.value,
+                "position": t.position.value,
+                "edit_type": t.edit_type.value,
+                "probe_kind": t.probe_kind.value,
+                "injection_site": t.injection_site.value,
+                "answer_probs": t.answer_probs,
+                "push_sign": None if t.push_sign is None else t.push_sign.value,
+            }
+            f.write(json.dumps(record) + "\n")

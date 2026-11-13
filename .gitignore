@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# Experiment outputs. Regenerable, and archived under runs/ when they are not.
+# Generated OUTPUT locations are ignored wholesale rather than by extension, so
+# curated source data (data/handwritten/, the stimuli CSVs) stays tracked
+# without needing negation rules.
+data/results*/
+data/directions*/
+data/calibration*.json
+data/stimuli/*.jsonl
+data/smoke*/
+data/local_*/
+data/gemma3_12b/
+data/gemma3_27b*/
+figures*/

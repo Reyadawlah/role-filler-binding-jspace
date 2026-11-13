@@ -1,0 +1,21 @@
+﻿NURSE AGENT ACTIVE,NURSE AGENT PASSIVE,NURSE PATIENT ACTIVE,NURSE PATIENT PASSIVE,EVAL SET agent + active,EVAL SET agent + passive,EVAL SET patient + active,EVAL SET patient + passive
+The nurse paid the lawyer.,The lawyer was paid by the nurse.,The lawyer paid the nurse.,The nurse was paid by the lawyer.,The nurse advised the lawyer.,The lawyer was advised by the nurse.,The lawyer advised the nurse.,The nurse was advised by the lawyer.
+The nurse followed the judge.,The judge was followed by the nurse.,The judge followed the nurse.,The nurse was followed by the judge.,The nurse welcomed the judge.,The judge was welcomed by the nurse.,The judge welcomed the nurse.,The nurse was welcomed by the judge.
+The nurse called the teacher.,The teacher was called by the nurse.,The teacher called the nurse.,The nurse was called by the teacher.,The nurse informed the teacher.,The teacher was informed by the nurse.,The teacher informed the nurse.,The nurse was informed by the teacher.
+The nurse trained the student.,The student was trained by the nurse.,The student trained the nurse.,The nurse was trained by the student.,The nurse reminded the student.,The student was reminded by the nurse.,The student reminded the nurse.,The nurse was reminded by the student.
+The nurse warned the driver.,The driver was warned by the nurse.,The driver warned the nurse.,The nurse was warned by the driver.,The nurse accompanied the driver.,The driver was accompanied by the nurse.,The driver accompanied the nurse.,The nurse was accompanied by the driver.
+The nurse assisted the passenger.,The passenger was assisted by the nurse.,The passenger assisted the nurse.,The nurse was assisted by the passenger.,The nurse guided the passenger.,The passenger was guided by the nurse.,The passenger guided the nurse.,The nurse was guided by the passenger.
+The nurse questioned the pilot.,The pilot was questioned by the nurse.,The pilot questioned the nurse.,The nurse was questioned by the pilot.,The nurse consulted the pilot.,The pilot was consulted by the nurse.,The pilot consulted the nurse.,The nurse was consulted by the pilot.
+The nurse congratulated the chef.,The chef was congratulated by the nurse.,The chef congratulated the nurse.,The nurse was congratulated by the chef.,The nurse invited the chef.,The chef was invited by the nurse.,The chef invited the nurse.,The nurse was invited by the chef.
+The nurse visited the farmer.,The farmer was visited by the nurse.,The farmer visited the nurse.,The nurse was visited by the farmer.,,,,
+The nurse encouraged the coach.,The coach was encouraged by the nurse.,The coach encouraged the nurse.,The nurse was encouraged by the coach.,,,,
+The nurse helped the doctor.,The doctor was helped by the nurse.,The doctor helped the nurse.,The nurse was helped by the doctor.,,,,
+The nurse recognized the lawyer.,The lawyer was recognized by the nurse.,The lawyer recognized the nurse.,The nurse was recognized by the lawyer.,,,,
+The nurse introduced the judge.,The judge was introduced by the nurse.,The judge introduced the nurse.,The nurse was introduced by the judge.,,,,
+The nurse comforted the student.,The student was comforted by the nurse.,The student comforted the nurse.,The nurse was comforted by the student.,,,,
+The nurse escorted the passenger.,The passenger was escorted by the nurse.,The passenger escorted the nurse.,The nurse was escorted by the passenger.,,,,
+The nurse scolded the driver.,The driver was scolded by the nurse.,The driver scolded the nurse.,The nurse was scolded by the driver.,,,,
+The nurse thanked the pilot.,The pilot was thanked by the nurse.,The pilot thanked the nurse.,The nurse was thanked by the pilot.,,,,
+The nurse greeted the chef.,The chef was greeted by the nurse.,The chef greeted the nurse.,The nurse was greeted by the chef.,,,,
+The nurse commended the farmer.,The farmer was commended by the nurse.,The farmer commended the nurse.,The nurse was commended by the farmer.,,,,
+The nurse notified the teacher.,The teacher was notified by the nurse.,The teacher notified the nurse.,The nurse was notified by the teacher.,,,,
